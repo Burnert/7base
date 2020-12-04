@@ -393,6 +393,10 @@ select {
   border: 1px solid var(--onyx);
 }
 
+input[name*='name'] {
+  min-width: 200px;
+}
+
 textarea {
   font-size: 14px;
   padding: 1px 4px;
