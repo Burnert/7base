@@ -250,6 +250,8 @@ button.soft {
 .table-wrapper {
   width: 100%;
   overflow-x: auto;
+  box-sizing: border-box;
+  padding: 0 28px;
 }
 .table-wrapper::-webkit-scrollbar {
   height: 10px;
@@ -267,8 +269,10 @@ button.soft {
   border-collapse: collapse;
   color: var(--cultured);
 }
-.table-view tbody td, .table-view th {
+.table-entry td, .table-view tbody th {
   padding: 5px 15px;
+}
+.table-view tbody td, .table-view tbody th {
   border: 1px solid var(--spanish-gray);
 }
 .create-table tbody td > * {
@@ -299,14 +303,12 @@ table td i {
 .create-container h3 {
   margin: 10px 0;
 }
-.create-container .table-wrapper {
-  box-sizing: border-box;
-  padding: 0 28px;
-}
+
 .create-table th {
   font-weight: 600;
 }
-.create-table tbody td {
+.table-column td,
+.table-entry.edit td {
   position: relative;
   padding: 5px;
 }
