@@ -103,7 +103,7 @@ require_once("./php/components/table_view.php");
   ?>
   </section>
   <footer>
-    <p>Jacek Rogal &copy;</p>
+    <p>Jacek Rogal &ndash; Burnert 2020 &copy; &ndash; <?php loc("all_rights_reserved") ?></p>
   </footer>
   <script>
   document.querySelectorAll('.menu').forEach(menu => setTimeout(() => menu.style.display = 'block', 50));
