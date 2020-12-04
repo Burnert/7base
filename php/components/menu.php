@@ -1,7 +1,7 @@
 <?php
 
 function menu($menu_id) {
-  global $langdir, $lang, $language;
+  global $langdir, $lang, $language, $themes, $current_theme;
 
   $menu_links = DatabaseManager::get()->get_all_tables();
 ?>
@@ -43,6 +43,18 @@ function menu($menu_id) {
             $langname = $lang["lang_" . $l];
 ?>
             <option value='<?php echo $l ?>' <?php if ($l == $language) echo "selected" ?> ><?php echo $langname ?></option>
+<?php
+          }
+?>
+          </select>
+        </li>
+        <li>
+          <label for="theme"><?php loc("theme") ?></label>
+          <select name="theme" id="theme">
+<?php
+          foreach ($themes as $theme) {
+?>
+            <option value='<?php echo $theme["id"] ?>' <?php if ($theme["id"] == $current_theme) echo "selected" ?> ><?php loc($theme["name"]) ?></option>
 <?php
           }
 ?>
