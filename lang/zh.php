@@ -6,6 +6,11 @@ $lang["columns"] = "表格栏";
 $lang["empty"] = "空的";
 $lang["confirm"] = "确认";
 $lang["cancel"] = "取消";
+$lang["all_rights_reserved"] = "版权所有";
+// Themes
+$lang["theme"] = "样式";
+$lang["theme_none"] = "默认";
+$lang["theme_theme-1"] = "暖";
 // Menu
 $lang["table_manager"] = "表格管理";
 $lang["settings"] = "设定";

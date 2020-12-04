@@ -6,6 +6,11 @@ $lang["columns"] = "Kolumny";
 $lang["empty"] = "Puste";
 $lang["confirm"] = "Zatwierdź";
 $lang["cancel"] = "Anuluj";
+$lang["all_rights_reserved"] = "Wszelkie prawa zastrzeżone";
+// Themes
+$lang["theme"] = "Styl";
+$lang["theme_none"] = "Domyślny";
+$lang["theme_theme-1"] = "Ciepły";
 // Menu
 $lang["table_manager"] = "Zarządzanie tabelami";
 $lang["settings"] = "Ustawienia";

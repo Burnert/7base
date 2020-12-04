@@ -6,6 +6,7 @@ $lang["columns"] = "Columns";
 $lang["empty"] = "Empty";
 $lang["confirm"] = "Confirm";
 $lang["cancel"] = "Cancel";
+$lang["all_rights_reserved"] = "All rights reserved";
 // Themes
 $lang["theme"] = "Theme";
 $lang["theme_none"] = "Default";
