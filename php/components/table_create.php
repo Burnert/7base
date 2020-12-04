@@ -13,7 +13,7 @@ function table_create() {
         <h3><?php loc("columns") ?></h3>
       </div>
       <div class="table-wrapper">
-        <table class="create-table">
+        <table class="create-table table-view">
           <tbody>
             <tr>
               <th><?php loc("name") ?></th>

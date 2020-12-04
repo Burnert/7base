@@ -262,14 +262,12 @@ button.soft {
   background-color: var(--silver);
 }
 
-.table-view,
-.create-table {
+.table-view {
   margin: 15px auto;
   border-collapse: collapse;
   color: var(--cultured);
 }
-.table-view td, .table-view th,
-.create-table tbody td, .create-table th {
+.table-view tbody td, .table-view th {
   padding: 5px 15px;
   border: 1px solid var(--spanish-gray);
 }
@@ -321,33 +319,33 @@ table td i {
   height: 30px;
   box-sizing: border-box;
 }
-.create-table tfoot td > div {
+.table-view tfoot td > div {
   display: flex;
   flex-direction: row-reverse;
 }
-.create-table button i {
+.table-view button i {
   display: block;
   font-size: 24px;
   color: var(--spanish-gray);
   transition: .2s;
 }
-.create-table tfoot button {
+.table-view tfoot button {
   border-radius: 0 0 5px 5px;
 }
-.create-table tbody button {
+.table-view tbody button {
   position: absolute;
   left: -26px;
   top: 8px;
   border-radius: 5px 0 0 5px;
   opacity: 0;
 }
-.create-table tbody tr:hover button {
+.table-view tbody tr:hover button {
   opacity: 1;
 }
-.create-table button:hover {
+.table-view button:hover {
   background-color: var(--silver);
 }
-.create-table button:hover i {
+.table-view button:hover i {
   color: var(--onyx);
 }
 
