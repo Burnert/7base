@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   const locDeleteColumnPromise = sendInterfaceRequest('loc', { entry: 'delete_column' });
 
-   document.querySelectorAll('.create-container').forEach(create => {
+  document.querySelectorAll('.create-container').forEach(create => {
     const form = create.querySelector('form');
     const properties = {
       name: () => createTextInput('name'),
@@ -57,12 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
           content.querySelector('input').name += '-' + columnsAmt;
         }
         if (i == 0) {
-          const btDelete = document.createElement('button');
-          btDelete.type = 'button';
-          btDelete.classList.add('soft');
-          locDeleteColumnPromise.then(result => btDelete.title = result);
-          btDelete.innerHTML = '<i class="material-icons">delete</i>';
-          btDelete.addEventListener('click', () => {
+          const btDelete = createTableFloatingButton('<i class="material-icons">delete</i>', { type: 'click', listener: () => {
             const columnRows = table.querySelectorAll('.table-column');
             if (columnRows.length > 1) {
               tr.remove();
@@ -72,7 +67,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
               });
             }
-          });
+          }});
+          locDeleteColumnPromise.then(result => btDelete.title = result);
           td.appendChild(btDelete);
         }
         td.appendChild(content);
