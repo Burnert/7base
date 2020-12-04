@@ -1,35 +1,36 @@
-function createTextInput(name, listener = null) {
+function createInput(name, attributes, listener = null) {
   const input = document.createElement('input');
-  input.type = 'text';
   input.name = name;
-  if (listener) {
-    input.addEventListener(listener.type, listener.listener);
-  }
-  return input;
-}
-
-function createNumberInput(name, attributes, listener = null) {
-  const input = createTextInput(name, listener);
-  input.type = 'number';
   if (attributes) {
     Object.keys(attributes).forEach(key => {
       input.setAttribute(key, attributes[key]);
     });
   }
+  if (listener) {
+    input.addEventListener(listener.type, listener.listener);
+  }
+  return input;
+}
+
+function createTextInput(name, attributes, listener = null) {
+  const input = createInput(name, attributes, listener);
+  input.type = 'text';
+  return input;
+}
+
+function createNumberInput(name, attributes, listener = null) {
+  const input = createTextInput(name, attributes, listener);
+  input.type = 'number';
   return input;
 }
 
 let checkboxCounter = 0;
-function createCheckboxInput(name, listener = null) {
+function createCheckboxInput(name, attributes, listener = null) {
+  const input = createInput(name, attributes, listener);
   const label = document.createElement('label');
-  const input = document.createElement('input');
   const span = document.createElement('span');
   input.type = 'checkbox';
   input.id = 'check' + checkboxCounter++;
-  input.name = name;
-  if (listener) {
-    input.addEventListener(listener.type, listener.listener);
-  }
   label.appendChild(input);
   label.appendChild(span);
   label.setAttribute('for', input.id);
