@@ -13,6 +13,7 @@ $lang["settings"] = "设定";
 $lang["add_table"] = "创造表格";
 $lang["edit_table"] = "编辑表格";
 $lang["delete_table"] = "删除表格";
+$lang["delete_are_you_sure"] = "你确定要删除这张表吗？";
 // Settings
 $lang["language"] = "语言";
 $lang["settings_apply"] = "使用";

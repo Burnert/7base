@@ -6,6 +6,10 @@ $lang["columns"] = "Columns";
 $lang["empty"] = "Empty";
 $lang["confirm"] = "Confirm";
 $lang["cancel"] = "Cancel";
+// Themes
+$lang["theme"] = "Theme";
+$lang["theme_none"] = "Default";
+$lang["theme_theme-1"] = "Warm";
 // Menu
 $lang["table_manager"] = "Table manager";
 $lang["settings"] = "Settings";
@@ -13,6 +17,7 @@ $lang["settings"] = "Settings";
 $lang["add_table"] = "Create table";
 $lang["edit_table"] = "Edit table";
 $lang["delete_table"] = "Delete table";
+$lang["delete_are_you_sure"] = "Do you really want to delete this table?";
 // Settings
 $lang["language"] = "Language";
 $lang["settings_apply"] = "Apply";

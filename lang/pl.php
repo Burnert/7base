@@ -13,6 +13,7 @@ $lang["settings"] = "Ustawienia";
 $lang["add_table"] = "Dodaj tabelę";
 $lang["edit_table"] = "Edytuj tabelę";
 $lang["delete_table"] = "Usuń tabelę";
+$lang["delete_are_you_sure"] = "Czy na pewno chcesz usunąć tą tabelę?";
 // Settings
 $lang["language"] = "Język";
 $lang["settings_apply"] = "Zastosuj";
