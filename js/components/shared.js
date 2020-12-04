@@ -51,3 +51,16 @@ function createSelectInput(name, options, listener = null) {
   }
   return input;
 }
+
+// Tables
+
+function createTableFloatingButton(content, listener = null) {
+  const button = document.createElement('button');
+  button.type = 'button';
+  button.classList.add('soft');
+  button.innerHTML = content;
+  if (listener) {
+    button.addEventListener(listener.type, listener.listener);
+  }
+  return button;
+}
