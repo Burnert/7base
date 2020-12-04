@@ -5,6 +5,7 @@ $lang["management_system"] = "数据库管理系统";
 $lang["columns"] = "表格栏";
 $lang["empty"] = "空的";
 $lang["confirm"] = "确认";
+$lang["cancel"] = "取消";
 // Menu
 $lang["table_manager"] = "表格管理";
 $lang["settings"] = "设定";

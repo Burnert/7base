@@ -5,6 +5,7 @@ $lang["management_system"] = "Database Management System";
 $lang["columns"] = "Columns";
 $lang["empty"] = "Empty";
 $lang["confirm"] = "Confirm";
+$lang["cancel"] = "Cancel";
 // Menu
 $lang["table_manager"] = "Table manager";
 $lang["settings"] = "Settings";
