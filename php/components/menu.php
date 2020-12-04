@@ -62,7 +62,7 @@ function menu($menu_id) {
         </li>
       </ul>
       <div class="horiz">
-        <button class="b-refresh"><?php loc("settings_apply") ?></button>
+        <button class="b-apply-settings"><?php loc("settings_apply") ?></button>
       </div>
     </div>
   </div>

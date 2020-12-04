@@ -1,6 +1,12 @@
 <?php
 
 $themes = [];
+
+if (!isset($_SESSION["theme"])) {
+  $_SESSION["theme"] = "null";
+}
+$current_theme = $_SESSION["theme"];
+
 function add_theme($theme_id, $theme_name) {
   global $themes;
 

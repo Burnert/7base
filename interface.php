@@ -17,6 +17,8 @@ $args = explode(":", $request);
 if ($args[0] == "apply_settings") {
   $_SESSION["language"] = $_REQUEST["lang"];
   echo "Changed language to <b>lang_" . $_SESSION["language"] . "</b>";
+  $_SESSION["theme"] = $_REQUEST["theme"];
+  echo "Changed theme to <b>theme_" . $_SESSION["theme"] . "</b>";
 }
 else if ($args[0] == "add_entries") {
   $entries_json = $_REQUEST["entries"];
