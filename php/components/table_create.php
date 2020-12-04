@@ -2,7 +2,7 @@
 
 function table_create() {
 ?>
-  <div class="default-container">
+  <div class="default-container create-container">
     <form action="./php/database/create_table.php" method="POST" autocomplete="off">
       <div class="vert block-center fit">
         <div class="input-generic">
