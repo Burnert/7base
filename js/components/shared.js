@@ -8,6 +8,17 @@ function createTextInput(name, listener = null) {
   return input;
 }
 
+function createNumberInput(name, attributes, listener = null) {
+  const input = createTextInput(name, listener);
+  input.type = 'number';
+  if (attributes) {
+    Object.keys(attributes).forEach(key => {
+      input.setAttribute(key, attributes[key]);
+    });
+  }
+  return input;
+}
+
 let checkboxCounter = 0;
 function createCheckboxInput(name, listener = null) {
   const label = document.createElement('label');

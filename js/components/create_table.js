@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
 				'DATE',
 				'DECIMAL',
 			]),
-			length_values: () => createTextInput('length_values'),
+			length_values: () => createNumberInput('length_values', { min: '0' }),
 			default_value: (listener) => createSelectInput('default_value', [
 				'None',
 				'NULL',
