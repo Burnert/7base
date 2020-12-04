@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   const locDeleteColumnPromise = sendInterfaceRequest('loc', { entry: 'delete_column' });
 
-  document.querySelectorAll('.create-container').forEach(create => {
+  document.querySelectorAll('.default-container').forEach(create => {
     const form = create.querySelector('form');
     const properties = {
       name: () => createTextInput('name'),
@@ -37,6 +37,8 @@ document.addEventListener('DOMContentLoaded', () => {
       // for each td
       for (let i = 0; i < tdCount; i++) {
         const td = tr.insertCell(i);
+        const tdDiv = document.createElement('div');
+        td.appendChild(tdDiv);
         const key = Object.keys(properties)[i];
         const listener = event => {
           if (event.target.name == 'default_value') {
@@ -76,9 +78,9 @@ document.addEventListener('DOMContentLoaded', () => {
             }
           }});
           locDeleteColumnPromise.then(result => btDelete.title = result);
-          td.appendChild(btDelete);
+          tdDiv.appendChild(btDelete);
         }
-        td.appendChild(content);
+        tdDiv.appendChild(content);
       }
     }
 
