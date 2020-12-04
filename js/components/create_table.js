@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
         'UNIQUE',
         'INDEX',
       ]),
-      auto_increment: () => createCheckboxInput('auto_increment'),
+      auto_increment: (listener) => createCheckboxInput('auto_increment', {}, { type: 'change', listener }),
     };
 
     const table = create.querySelector('.create-table > tbody');
@@ -45,6 +45,13 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             else {
 
+            }
+          }
+          // Set to primary if auto increment is checked
+          else if (event.target.name.includes('auto_increment')) {
+            if (event.target.checked) {
+              const indexInput = tr.querySelector('select[name*="index"]');
+              indexInput.value = 'PRIMARY';
             }
           }
         }
