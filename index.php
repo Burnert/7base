@@ -3,6 +3,7 @@ session_start();
 
 require_once("./php/localisation.php");
 
+// Database
 require_once("./php/database/dbinfo.php");
 require_once("./php/database/dbmanager.php");
 
@@ -10,7 +11,11 @@ $dbmanager = new DatabaseManager();
 $dbmanager->connect(db\HOST, db\LOGIN, db\PASSWORD);
 $dbmanager->select_database(db\DATABASE);
 
-require_once("./php/components.php");
+// Components
+require_once("./php/components/menu.php");
+require_once("./php/components/menu_button.php");
+require_once("./php/components/table_create.php");
+require_once("./php/components/table_view.php");
 ?>
 <!DOCTYPE html>
 <html lang="pl">
@@ -21,13 +26,19 @@ require_once("./php/components.php");
   <meta type="keywords" content="baza">
   <link rel="stylesheet" href="./css/normalize.css">
   <link rel="stylesheet" href="./css/style.css">
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  
   <title><?php loc("management_system") ?></title>
   <script src="./js/main.js"></script>
-  <script src="./js/components.js"></script>
+  <!-- Components -->
+  <script src="./js/components/shared.js"></script>
+  <script src="./js/components/menu_button.js"></script>
+  <script src="./js/components/create_table.js"></script>
+  <script src="./js/components/table_view.js"></script>
 </head>
 <body>
   <header>
