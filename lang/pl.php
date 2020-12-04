@@ -12,6 +12,7 @@ $lang["edit_table"] = "Edytuj tabelę";
 $lang["delete_table"] = "Usuń tabelę";
 // Settings
 $lang["language"] = "Język";
+$lang["settings_apply"] = "Zastosuj";
 // Table view
 $lang["table_empty"] = "Tabela nie zawiera rekordów.";
 // Create table
