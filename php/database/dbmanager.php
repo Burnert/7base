@@ -2,6 +2,7 @@
 
 class DatabaseManager {
 	private $link;
+	private static $dbmanager;
 
 	public function connect($host, $login, $password) {
 		$this->link = @mysqli_connect($host, $login, $password);
@@ -71,6 +72,16 @@ class DatabaseManager {
 		$result = @mysqli_query($this->link, $query);
 		$rows = @mysqli_fetch_all($result, MYSQLI_ASSOC);
 		return $rows;
+	}
+
+	public static function create() {
+		if (!self::$dbmanager) {
+			self::$dbmanager = new DatabaseManager();
+		}
+	}
+
+	public static function get() {
+		return self::$dbmanager;
 	}
 }
 

@@ -7,9 +7,9 @@ require_once("./php/localisation.php");
 require_once("./php/database/dbinfo.php");
 require_once("./php/database/dbmanager.php");
 
-$dbmanager = new DatabaseManager();
-$dbmanager->connect(db\HOST, db\LOGIN, db\PASSWORD);
-$dbmanager->select_database(db\DATABASE);
+DatabaseManager::create();
+DatabaseManager::get()->connect(db\HOST, db\LOGIN, db\PASSWORD);
+DatabaseManager::get()->select_database(db\DATABASE);
 
 // Components
 require_once("./php/components/menu.php");
@@ -88,8 +88,8 @@ require_once("./php/components/table_view.php");
   // View table
   else if (isset($_GET["table"])) {
     $tablename = $_GET["table"];
-    $columns = $dbmanager->describe_table($tablename);
-    $rows = $dbmanager->select_from_table($tablename);
+    $columns = DatabaseManager::get()->describe_table($tablename);
+    $rows = DatabaseManager::get()->select_from_table($tablename);
 
     table_view($rows, $columns);
     if (!$rows) {

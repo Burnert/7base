@@ -1,9 +1,9 @@
 <?php
 
 function menu($menu_id) {
-  global $dbmanager, $langdir, $lang, $language;
+  global $langdir, $lang, $language;
 
-  $menu_links = $dbmanager->get_all_tables();
+  $menu_links = DatabaseManager::get()->get_all_tables();
 ?>
   <div class="menu" id="<?php echo $menu_id ?>">
     <h4><?php loc("table_manager") ?></h4>
