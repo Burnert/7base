@@ -53,6 +53,20 @@ function createSelectInput(name, options, listener = null) {
   return input;
 }
 
+function createTextArea(name, attributes, listener = null) {
+  const input = document.createElement('textarea');
+  input.name = name;
+  if (attributes) {
+    Object.keys(attributes).forEach(key => {
+      input.setAttribute(key, attributes[key]);
+    });
+  }
+  if (listener) {
+    input.addEventListener(listener.type, listener.listener);
+  }
+  return input;
+}
+
 // Tables
 
 function createTableFloatingButton(content, listener = null) {
