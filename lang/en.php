@@ -1,8 +1,10 @@
 <?php
 
 $lang["management_system"] = "Database Management System";
-
+// Generic
 $lang["columns"] = "Columns";
+$lang["empty"] = "Empty";
+$lang["confirm"] = "Confirm";
 // Menu
 $lang["table_manager"] = "Table manager";
 $lang["settings"] = "Settings";
@@ -15,7 +17,6 @@ $lang["language"] = "Language";
 $lang["settings_apply"] = "Apply";
 // Table view
 $lang["table_empty"] = "The table has no records.";
-$lang["empty"] = "Empty";
 $lang["add_entry"] = "Add entry";
 $lang["delete_entry"] = "Delete entry";
 // Create table

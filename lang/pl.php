@@ -3,6 +3,8 @@
 $lang["management_system"] = "System Zarządzania Bazą Danych";
 
 $lang["columns"] = "Kolumny";
+$lang["empty"] = "Puste";
+$lang["confirm"] = "Zatwierdź";
 // Menu
 $lang["table_manager"] = "Zarządzanie tabelami";
 $lang["settings"] = "Ustawienia";
@@ -15,7 +17,6 @@ $lang["language"] = "Język";
 $lang["settings_apply"] = "Zastosuj";
 // Table view
 $lang["table_empty"] = "Tabela nie zawiera rekordów.";
-$lang["empty"] = "Puste";
 $lang["add_entry"] = "Dodaj pozycję";
 $lang["delete_entry"] = "Usuń pozycję";
 // Create table

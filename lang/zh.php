@@ -3,6 +3,8 @@
 $lang["management_system"] = "数据库管理系统";
 
 $lang["columns"] = "表格栏";
+$lang["empty"] = "空的";
+$lang["confirm"] = "确认";
 // Menu
 $lang["table_manager"] = "表格管理";
 $lang["settings"] = "设定";
@@ -15,7 +17,6 @@ $lang["language"] = "语言";
 $lang["settings_apply"] = "使用";
 // Table view
 $lang["table_empty"] = "这张表格没有记录。";
-$lang["empty"] = "空的";
 $lang["add_entry"] = "加条目";
 $lang["delete_entry"] = "删除条目";
 // Create table
