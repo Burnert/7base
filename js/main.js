@@ -12,7 +12,7 @@ function sendInterfaceRequest(request, parameters) {
     xhttp.addEventListener('error', function() {
       reject(this.response);
     });
-    let url = './php/interface.php?request=' + request;
+    let url = './interface.php?request=' + request;
     if (parameters) {
       const parameterString = Object.keys(parameters).map(key => key + '=' + parameters[key]).join('&');
       url += '&' + parameterString;
