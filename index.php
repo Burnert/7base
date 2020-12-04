@@ -51,7 +51,7 @@ require_once("./php/components.php");
       mainMenu.classList.add('active');
     }
   </script>
-  <section>
+  <section class="main">
   <?php
   // Plain action
   if (isset($_GET["action"])) {
@@ -90,7 +90,7 @@ require_once("./php/components.php");
   ?>
   </section>
   <footer>
-
+    <p>Jacek Rogal &copy;</p>
   </footer>
   <script>
   document.querySelectorAll('.menu').forEach(menu => setTimeout(() => menu.style.display = 'block', 50));

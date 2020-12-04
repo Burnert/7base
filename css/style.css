@@ -103,6 +103,18 @@ header .overlay {
   justify-content: space-between;
   align-items: center;
 }
+section.main {
+  min-height: calc(100vh - 190px);
+}
+footer {
+  position: sticky;
+  height: 50px;
+  bottom: 0;
+  overflow: hidden;
+  text-align: center;
+  background-color: var(--onyx);
+  color: var(--silver);
+}
 
 button, a.button {
   padding: 6px 16px;
