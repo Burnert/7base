@@ -269,14 +269,16 @@ button.soft {
   border-collapse: collapse;
   color: var(--cultured);
 }
+.table-view tbody div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .table-entry td, .table-view tbody th {
   padding: 5px 15px;
 }
 .table-view tbody td, .table-view tbody th {
   border: 1px solid var(--spanish-gray);
-}
-.create-table tbody td > * {
-  margin: auto;
 }
 
 table td i {
@@ -296,11 +298,11 @@ table td i {
   pointer-events: initial;
 }
 
-.create-container {
+.default-container {
   padding: 10px 20px;
   font-size: 20px;
 }
-.create-container h3 {
+.default-container h3 {
   margin: 10px 0;
 }
 
@@ -312,13 +314,20 @@ table td i {
   position: relative;
   padding: 5px;
 }
-.create-table tbody td > * {
+.create-table tbody td * {
   font-size: 20px;
 }
-.create-table input,
-.create-table select {
+.table-column input, .table-entry.edit input,
+.table-column select, .table-entry.edit select {
   width: 100%;
   height: 30px;
+  box-sizing: border-box;
+}
+.table-entry.edit textarea {
+  display: block;
+  height: 20px;
+  min-width: 200px;
+  min-height: 20px;
   box-sizing: border-box;
 }
 .table-view tfoot td > div {
@@ -337,7 +346,7 @@ table td i {
 .table-view tbody button {
   position: absolute;
   left: -26px;
-  top: 8px;
+  margin: auto;
   border-radius: 5px 0 0 5px;
   opacity: 0;
 }
@@ -360,6 +369,20 @@ table td i {
 .input-generic * {
   margin: 5px;
 }
+.table-entry.edit input {
+  font-size: 16px;
+  height: 20px;
+}
+.table-entry.edit input[type='number'] {
+  width: 100px;
+}
+.table-entry.edit input[type='text'],
+.table-entry.edit select {
+  width: 200px;
+}
+.table-entry.edit input[type='number'] {
+  width: 100px;
+}
 
 input,
 select {
@@ -368,11 +391,19 @@ select {
   background-color: var(--cultured);
   color: var(--onyx);
   border: 1px solid var(--onyx);
-  outline: none;
+}
+
+textarea {
+  font-size: 14px;
+  padding: 1px 4px;
+  background-color: var(--cultured);
+  color: var(--onyx);
+  border: 1px solid var(--onyx);
 }
 
 input:focus,
-select:focus {
+select:focus,
+textarea:focus {
   outline: none;
 }
 
