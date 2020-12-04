@@ -15,6 +15,8 @@ $lang["language"] = "Language";
 $lang["settings_apply"] = "Apply";
 // Table view
 $lang["table_empty"] = "The table has no records.";
+$lang["add_entry"] = "Add entry";
+$lang["delete_entry"] = "Delete entry";
 // Create table
 $lang["table_name"] = "Table name";
 $lang["name"] = "Name";
@@ -25,5 +27,7 @@ $lang["default_value"] = "Default&nbsp;value";
 $lang["nullable"] = "Nullable";
 $lang["index"] = "Index";
 $lang["auto_increment"] = "Auto++";
+$lang["add_column"] = "Add column";
+$lang["delete_column"] = "Delete column";
 
 ?>

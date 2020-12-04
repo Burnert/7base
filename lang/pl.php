@@ -15,15 +15,19 @@ $lang["language"] = "Język";
 $lang["settings_apply"] = "Zastosuj";
 // Table view
 $lang["table_empty"] = "Tabela nie zawiera rekordów.";
+$lang["add_entry"] = "Dodaj pozycję";
+$lang["delete_entry"] = "Usuń pozycję";
 // Create table
 $lang["table_name"] = "Nazwa tabeli";
 $lang["name"] = "Nazwa";
 $lang["type"] = "Typ";
 $lang["length"] = "Długość";
 $lang["values"] = "Wartości";
-$lang["default_value"] = "Wartość domyślna";
+$lang["default_value"] = "Wartość&nbsp;domyślna";
 $lang["nullable"] = "Zerowalne";
 $lang["index"] = "Indeks";
 $lang["auto_increment"] = "Auto++";
+$lang["add_column"] = "Dodaj kolumnę";
+$lang["delete_column"] = "Usuń kolumnę";
 
 ?>
