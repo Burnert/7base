@@ -21,11 +21,3 @@ function sendInterfaceRequest(request, parameters) {
     xhttp.send();
   });
 }
-
-document.addEventListener('DOMContentLoaded', () => {
-  document.querySelectorAll('.b-refresh').forEach(button => button.addEventListener('click', async () => {
-    const lang = document.getElementById('language').value;
-    const result = await sendInterfaceRequest('apply_settings', { lang });
-    location.reload();
-  }));
-});

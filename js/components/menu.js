@@ -15,5 +15,12 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       localStorage.setItem('menuActive', !menuActive);
     }
-	}));
+  }));
+  
+  document.querySelectorAll('.b-apply-settings').forEach(button => button.addEventListener('click', async () => {
+    const lang = document.getElementById('language').value;
+    const theme = document.getElementById('theme').value;
+    const result = await sendInterfaceRequest('apply_settings', { lang, theme });
+    location.reload();
+  }));
 });
