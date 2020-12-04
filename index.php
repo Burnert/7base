@@ -2,6 +2,7 @@
 session_start();
 
 require_once("./php/localisation.php");
+require_once("./php/themes.php");
 
 // Database
 require_once("./php/database/dbinfo.php");
@@ -36,7 +37,8 @@ require_once("./php/components/table_view.php");
   <script src="./js/main.js"></script>
   <!-- Components -->
   <script src="./js/components/shared.js"></script>
-  <script src="./js/components/menu_button.js"></script>
+  <script src="./js/components/dialogue_box.js"></script>
+  <script src="./js/components/menu.js"></script>
   <script src="./js/components/create_table.js"></script>
   <script src="./js/components/table_view.js"></script>
 </head>
