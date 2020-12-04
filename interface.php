@@ -3,7 +3,13 @@
 session_start();
 
 require_once('./php/localisation.php');
+
 require_once('./php/database/dbmanager.php');
+require_once("./php/database/dbinfo.php");
+
+DatabaseManager::create();
+DatabaseManager::get()->connect(db\HOST, db\LOGIN, db\PASSWORD);
+DatabaseManager::get()->select_database(db\DATABASE);
 
 $request = $_REQUEST["request"];
 $args = explode(":", $request);
@@ -17,7 +23,6 @@ else if ($args[0] == "add_entries") {
   $entries = json_decode($entries_json);
   
   DatabaseManager::get()->add_entries();
-  var_dump(DatabaseManager::get());
 }
 else if ($args[0] == "loc") {
   

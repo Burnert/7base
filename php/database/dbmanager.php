@@ -74,6 +74,12 @@ class DatabaseManager {
 		return $rows;
 	}
 
+	public function add_entries($entries) {
+		foreach ($entries as $entry) {
+			echo $entry;
+		}
+	}
+
 	public static function create() {
 		if (!self::$dbmanager) {
 			self::$dbmanager = new DatabaseManager();
