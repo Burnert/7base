@@ -15,6 +15,7 @@ $lang["language"] = "Language";
 $lang["settings_apply"] = "Apply";
 // Table view
 $lang["table_empty"] = "The table has no records.";
+$lang["empty"] = "Empty";
 $lang["add_entry"] = "Add entry";
 $lang["delete_entry"] = "Delete entry";
 // Create table

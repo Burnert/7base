@@ -15,6 +15,9 @@ $lang["language"] = "语言";
 $lang["settings_apply"] = "使用";
 // Table view
 $lang["table_empty"] = "这张表格没有记录。";
+$lang["empty"] = "空的";
+$lang["add_entry"] = "加条目";
+$lang["delete_entry"] = "删除条目";
 // Create table
 $lang["table_name"] = "表格的名称";
 $lang["name"] = "名称";
@@ -25,5 +28,7 @@ $lang["default_value"] = "默认值";
 $lang["nullable"] = "可为空";
 $lang["index"] = "指数";
 $lang["auto_increment"] = "自动++";
+$lang["add_column"] = "加栏";
+$lang["delete_column"] = "删除栏";
 
 ?>
