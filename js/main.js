@@ -9,6 +9,9 @@ function sendInterfaceRequest(request, parameters) {
 				resolve(this.response);
 			}
 		});
+		xhttp.addEventListener('error', function() {
+			reject(this.response);
+		});
 		let url = './php/interface.php?request=' + request;
 		if (parameters) {
 			const parameterString = Object.keys(parameters).map(key => key + '=' + parameters[key]).join('&');
@@ -21,8 +24,8 @@ function sendInterfaceRequest(request, parameters) {
 
 document.addEventListener('DOMContentLoaded', () => {
 	document.querySelectorAll('.b-refresh').forEach(button => button.addEventListener('click', async () => {
-			const lang = document.getElementById('language').value;
-			const result = await sendInterfaceRequest('apply_settings', { lang });
-			location.reload();
-		}));
+		const lang = document.getElementById('language').value;
+		const result = await sendInterfaceRequest('apply_settings', { lang });
+		location.reload();
+	}));
 });
