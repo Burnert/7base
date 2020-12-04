@@ -1,6 +1,7 @@
 <?php
 
 function table_view($rows, $columns) {
+  global $lang;
 ?>
   <div class="table-wrapper">
   <table class="table-view">
@@ -24,7 +25,7 @@ function table_view($rows, $columns) {
             echo $value;
           }
           else {
-            echo "<i>NULL</i>";
+            echo "<i>" . $lang["empty"] . "</i>";
           }
           echo "</td>";
         } 
@@ -37,7 +38,10 @@ function table_view($rows, $columns) {
       <tr>
         <td colspan="<?php echo count($columns) ?>">
           <div>
-            <button type="button" class="soft" id="b-add-entry">
+            <button type="button" class="soft" id="b-confirm-add" title="<?php loc("confirm") ?>">
+              <i class="material-icons">done</i>
+            </button>
+            <button type="button" class="soft" id="b-add-entry" title="<?php loc("add_entry") ?>">
               <i class="material-icons">add</i>
             </button>
           </div>

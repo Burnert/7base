@@ -1,4 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
+	const locDeleteColumnPromise = sendInterfaceRequest('loc', { entry: 'delete_column' });
+
  	document.querySelectorAll('.create-container').forEach(create => {
 		const form = create.querySelector('form');
 		const properties = {
@@ -58,6 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
 					const btDelete = document.createElement('button');
 					btDelete.type = 'button';
 					btDelete.classList.add('soft');
+					locDeleteColumnPromise.then(result => btDelete.title = result);
 					btDelete.innerHTML = '<i class="material-icons">delete</i>';
 					btDelete.addEventListener('click', () => {
 						const columnRows = table.querySelectorAll('.table-column');
