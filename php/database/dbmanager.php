@@ -76,7 +76,7 @@ class DatabaseManager {
 
 	public function add_entries($entries) {
 		foreach ($entries as $entry) {
-			echo $entry;
+			var_dump($entry);
 		}
 	}
 

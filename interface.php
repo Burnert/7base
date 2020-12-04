@@ -21,8 +21,12 @@ if ($args[0] == "apply_settings") {
 else if ($args[0] == "add_entries") {
   $entries_json = $_REQUEST["entries"];
   $entries = json_decode($entries_json);
+  var_dump($entries_json);
   
-  DatabaseManager::get()->add_entries();
+  DatabaseManager::get()->add_entries($entries);
+}
+else if ($args[0] == "describe_table") {
+  DatabaseManager::get()->describe_table();
 }
 else if ($args[0] == "loc") {
   
