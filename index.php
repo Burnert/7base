@@ -14,7 +14,6 @@ DatabaseManager::get()->select_database(db\DATABASE);
 
 // Components
 require_once("./php/components/menu.php");
-require_once("./php/components/menu_button.php");
 require_once("./php/components/table_create.php");
 require_once("./php/components/table_view.php");
 ?>
