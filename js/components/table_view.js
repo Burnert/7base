@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const locDeleteColumnPromise = sendInterfaceRequest('loc', { entry: 'delete_column' });
+  const locDeleteColumnPromise = sendInterfaceRequest('loc', { entry: 'delete_entry' });
   // For each entry view table on page
   document.querySelectorAll('.table-view.entry-view').forEach(view => {
     const inputTypes = {
@@ -34,6 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const existingRows = table.querySelectorAll('.table-entry');
 
     const deletedEntryIds = [];
+    // Add control buttons to existing rows
     existingRows.forEach(tr => {
       const btDelete = createTableFloatingButton('<i class="material-icons">delete</i>', { type: 'click', listener: () => {
         deletedEntryIds.push(currentTableRows.splice(Array.from(existingRows).findIndex(row => row == tr), 1)[0]);
@@ -42,6 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
         showAdditionalButtons();
       }});
       tr.querySelector('td:first-of-type > div').appendChild(btDelete);
+      // const btEdit = 
     });
 
     const tdCount = table.querySelectorAll('th').length;
