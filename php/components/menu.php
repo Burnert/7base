@@ -9,6 +9,13 @@ function menu_button($menu_id) {
     <span class="menu-bar" style="top: 15px;"></span>
     <span class="menu-bar" style="top: 30px;"></span>
   </div>
+  <script>
+    if (mainMenuActive) {
+      const mainMenuButton = document.querySelector('*[menu=mainmenu]');
+      mainMenuButton.classList.add('active');
+    }
+    removeLastScriptTag();
+  </script>
 <?php
 }
 
@@ -80,6 +87,13 @@ function menu($menu_id) {
       </div>
     </div>
   </div>
+  <script>
+    if (mainMenuActive) {
+      const mainMenu = document.getElementById('mainmenu');
+      mainMenu.classList.add('active');
+    }
+    removeLastScriptTag();
+  </script>
 <?php
 }
 

@@ -48,21 +48,9 @@ require_once("./php/components/table_view.php");
     <div class="overlay">
       <img src="./gfx/7base.png" alt="7Base">
       <?php menu_button("mainmenu"); ?>
-      <script>
-        if (mainMenuActive) {
-          const mainMenuButton = document.querySelector('*[menu=mainmenu]');
-          mainMenuButton.classList.add('active');
-        }
-      </script>
     </div>
   </header>
   <?php menu("mainmenu"); ?>
-  <script>
-    if (mainMenuActive) {
-      const mainMenu = document.getElementById('mainmenu');
-      mainMenu.classList.add('active');
-    }
-  </script>
   <section class="main">
   <?php
   // Plain action
