@@ -6,6 +6,7 @@ $lang["columns"] = "表格栏";
 $lang["empty"] = "空的";
 $lang["confirm"] = "确认";
 $lang["cancel"] = "取消";
+$lang["auto"] = "自动";
 $lang["all_rights_reserved"] = "版权所有";
 // Themes
 $lang["theme"] = "样式";

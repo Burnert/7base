@@ -1,5 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
   const locDeleteColumnPromise = sendInterfaceRequest('loc', { entry: 'delete_entry' });
+  const locAutoPlaceholderPromise = sendInterfaceRequest('loc', { entry: 'auto' });
+  let autoPlaceholderText = 'Auto';
+  locAutoPlaceholderPromise.then(result => autoPlaceholderText = result);
   // For each entry view table on page
   document.querySelectorAll('.table-view.entry-view').forEach(view => {
     const inputTypes = {
@@ -73,17 +76,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         const attributes = { maxlength };
         if (columnExtra.includes('auto_increment')) {
-          attributes.placeholder = 'Auto';
+          attributes.placeholder = autoPlaceholderText;
         }
         const content = inputCreator(currentTableColumns[i]['Field'], listener, attributes);
+        if (columnExtra.includes('auto_increment')) {
+          content.classList.add('vivid-placeholder');
+        }
         const editEntriesAmt = table.querySelectorAll('.table-entry.edit').length - 1;
-        // // Add index to name attr
-        // if (content.hasAttribute('name')) {
-        //   content.name += '-' + editEntriesAmt;
-        // } 
-        // else {
-        //   content.querySelector('input').name += '-' + editEntriesAmt;
-        // }
         // Insert control buttons in first td
         if (i == 0) {
           const btDelete = createTableFloatingButton('<i class="material-icons">delete</i>', { type: 'click', listener: () => {
@@ -96,6 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
           }});
           locDeleteColumnPromise.then(result => btDelete.title = result);
+          
           tdDiv.appendChild(btDelete);
         }
         tdDiv.appendChild(content);
