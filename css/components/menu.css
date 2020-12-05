@@ -106,3 +106,8 @@
 .menu .table-controls > * {
   pointer-events: initial;
 }
+
+.settings li {
+  display: flex;
+  justify-content: space-between;
+}
