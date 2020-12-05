@@ -21,3 +21,7 @@ function sendInterfaceRequest(request, parameters) {
     xhttp.send();
   });
 }
+
+function removeLastScriptTag() {
+  Array.from(document.querySelectorAll('script')).reverse()[0].remove();
+}

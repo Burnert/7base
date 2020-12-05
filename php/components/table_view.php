@@ -5,7 +5,7 @@ function table_view($rows, $columns) {
   <script>
     const currentTableColumns = JSON.parse('<?php echo json_encode($columns) ?>');
     const currentTableRows = JSON.parse('<?php echo json_encode($rows) ?>');
-    Array.from(document.querySelectorAll('script')).reverse()[0].remove();
+    removeLastScriptTag();
   </script>
   <div class="default-container">
   <div class="table-wrapper">
