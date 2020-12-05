@@ -217,7 +217,7 @@ textarea:focus {
   display: block;
   width: 100%;
   height: 100%;
-  background-color: var(--inverse);
+  background-color: var(--inverse-strong);
   border: 1px solid var(--inverse);
   cursor: pointer;
   transition: .2s;
