@@ -4,14 +4,14 @@ function table_create() {
 ?>
   <div class="default-container create-container">
     <form action="./php/database/create_table.php" method="POST" autocomplete="off">
-      <div class="vert block-center fit">
+      <div class="block-center fit">
         <div class="input-generic">
           <label for="cr-name"><?php loc("table_name") ?></label>
           <input type="text" name="name" id="cr-name">
         </div>
-        <div class="spacer-v"></div>
-        <h3><?php loc("columns") ?></h3>
       </div>
+      <div class="spacer-v"></div>
+      <h3><?php loc("columns") ?></h3>
       <div class="table-wrapper">
         <table class="create-table table-view">
           <tbody>
