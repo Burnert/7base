@@ -17,7 +17,8 @@ function sendInterfaceRequest(request, parameters) {
       const parameterString = Object.keys(parameters).map(key => key + '=' + parameters[key]).join('&');
       url += '&' + parameterString;
     }
-    xhttp.open('GET', url, true);
+    console.log(url);
+    xhttp.open('POST', url, true);
     xhttp.send();
   });
 }
