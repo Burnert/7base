@@ -72,7 +72,7 @@ function createTextArea(name, attributes, listener = null) {
 function createTableFloatingButton(content, listener = null) {
   const button = document.createElement('button');
   button.type = 'button';
-  button.classList.add('soft');
+  button.classList.add('soft', 'floating-button');
   button.innerHTML = content;
   if (listener) {
     button.addEventListener(listener.type, listener.listener);

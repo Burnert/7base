@@ -1,3 +1,5 @@
+/* Table view container */
+
 .default-container {
   padding: 10px 20px;
   font-size: 20px;
@@ -5,6 +7,8 @@
 .default-container h3 {
   margin: 10px 0;
 }
+
+/* Table wrapper */
 
 .table-wrapper {
   width: 100%;
@@ -23,15 +27,18 @@
   background-color: var(--secondary);
 }
 
-.create-table th {
+/* Table view */
+
+.table-view th {
   font-weight: 600;
 }
 .table-column td,
-.table-entry td {
+.table-entry.edit td {
   position: relative;
   padding: 5px;
 }
-.create-table tbody td * {
+.create-table tbody td input,
+.create-table tbody td select {
   font-size: 20px;
 }
 .table-column input, .table-entry.edit input,
@@ -68,15 +75,23 @@
   display: flex;
   flex-direction: row-reverse;
 }
-.table-view button i {
+
+/* Floating buttons */
+
+/* General */
+.table-view .floating-button {
   display: block;
   font-size: 24px;
   color: var(--tertiary);
   transition: .2s;
 }
+
+/* Bottom buttons */
 .table-view tfoot button {
   border-radius: 0 0 5px 5px;
 }
+
+/* Row buttons */
 .table-view tbody button {
   position: absolute;
   left: -26px;
@@ -87,12 +102,8 @@
 .table-view tbody tr:hover button {
   opacity: 1;
 }
-.table-view button:hover {
-  background-color: var(--secondary);
-}
-.table-view button:hover i {
-  color: var(--inverse);
-}
+
+/* Table inputs */
 
 .table-entry.edit input {
   font-size: 16px;

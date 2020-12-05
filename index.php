@@ -45,7 +45,7 @@ require_once("./php/components/table_view.php");
   <script src="./js/components/table_view.js"></script>
 </head>
 <body>
-  <header>
+  <header class="main">
     <h1>7Base</h1>
     <p><?php loc("management_system") ?></p>
     <div class="overlay">
