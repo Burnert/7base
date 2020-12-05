@@ -25,7 +25,7 @@ function table_view($rows, $columns) {
       foreach ($rows as $row) {
         echo "<tr class='table-entry'>";
         foreach ($row as $value) {
-          echo "<td><div>";
+          echo "<td><div><span>";
           if ($value) {
             echo $value;
           }
@@ -34,7 +34,7 @@ function table_view($rows, $columns) {
             loc("empty");
             echo "</i>";
           }
-          echo "</div></td>";
+          echo "</span></div></td>";
         }
         echo "</tr>";
       }
@@ -45,13 +45,13 @@ function table_view($rows, $columns) {
       <tr>
         <td colspan="<?php echo count($columns) ?>">
           <div>
-            <button type="button" class="soft" id="b-confirm-add" title="<?php loc("confirm") ?>" style="display: none;">
+            <button type="button" class="soft floating-button" id="b-confirm-add" title="<?php loc("confirm") ?>" style="display: none;">
               <i class="material-icons">done</i>
             </button>
-            <button type="button" class="soft" id="b-cancel-add" title="<?php loc("cancel") ?>" style="display: none;">
+            <button type="button" class="soft floating-button" id="b-cancel-add" title="<?php loc("cancel") ?>" style="display: none;">
               <i class="material-icons">clear</i>
             </button>
-            <button type="button" class="soft" id="b-add-entry" title="<?php loc("add_entry") ?>">
+            <button type="button" class="soft floating-button" id="b-add-entry" title="<?php loc("add_entry") ?>">
               <i class="material-icons">add</i>
             </button>
           </div>

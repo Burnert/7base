@@ -33,8 +33,11 @@
   font-weight: 600;
 }
 .table-column td,
-.table-entry.edit td {
+.table-entry td {
   position: relative;
+}
+.table-column td,
+.table-entry.edit td {
   padding: 5px;
 }
 .create-table tbody td input,

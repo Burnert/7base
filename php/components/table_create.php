@@ -29,7 +29,7 @@ function table_create() {
             <tr>
               <td colspan="7">
                 <div>
-                  <button type="button" class="soft" id="b-add-column" title="<?php loc("add_column") ?>">
+                  <button type="button" class="soft floating-button" id="b-add-column" title="<?php loc("add_column") ?>">
                     <i class="material-icons">add</i>
                   </button>
                 </div>
