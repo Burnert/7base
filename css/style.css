@@ -43,8 +43,6 @@ section {
   color: var(--secondary);
 }
 
-
-
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Merriweather', serif;
   text-align: center;
@@ -171,8 +169,8 @@ input,
 select {
   font-size: 24px;
   padding: 1px 4px;
-  background-color: var(--primary);
-  color: var(--inverse);
+  background-color: var(--inverse-strong);
+  color: var(--secondary);
   border: 1px solid var(--inverse);
 }
 
@@ -183,8 +181,8 @@ input[name*='name'] {
 textarea {
   font-size: 14px;
   padding: 1px 4px;
-  background-color: var(--primary);
-  color: var(--inverse);
+  background-color: var(--inverse-strong);
+  color: var(--secondary);
   border: 1px solid var(--inverse);
 }
 
@@ -280,4 +278,8 @@ textarea:focus {
 .block-center {
   margin-left: auto;
   margin-right: auto;
+}
+
+.vivid-placeholder::placeholder {
+  color: var(--secondary);
 }
