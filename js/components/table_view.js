@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
       rows.forEach(row => {
         const entryObj = {};
         const inputs = Array.from(row.querySelectorAll('input, select, textarea')).filter(element => element.name);
-        inputs.forEach(input => entryObj[input.name] = input.value);
+        inputs.forEach(input => entryObj[input.name] = encodeURIComponent(input.value));
         entries.push(entryObj);
       });
       return entries;
@@ -111,11 +111,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     btConfirmAdd.addEventListener('click', () => {
       const entries = JSON.stringify(makeNewEntriesArray());
-      sendInterfaceRequest('add_entries', { entries }).then(result => {
+      const columns = JSON.stringify(currentTableColumns.map(column => column['Field']));
+      sendInterfaceRequest('add_entries', { name: currentTableName, columns, entries }).then(result => {
         console.log(result);
+        location.reload();
       });
       // const updateEntries;
-
     });
 
     btCancelAdd.addEventListener('click', () => location.reload());

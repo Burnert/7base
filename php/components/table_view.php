@@ -5,6 +5,7 @@ function table_view($name, $rows, $columns) {
   <script>
     const currentTableColumns = JSON.parse('<?php echo json_encode($columns) ?>');
     const currentTableRows = JSON.parse('<?php echo json_encode($rows) ?>');
+    const currentTableName = '<?php echo $name ?>';
     removeLastScriptTag();
   </script>
   <div class="default-container">
@@ -28,7 +29,7 @@ function table_view($name, $rows, $columns) {
             foreach ($row as $value) {
               echo "<td><div><span>";
               if ($value) {
-                echo $value;
+                echo htmlentities($value);
               }
               else {
                 echo "<i class='empty'>";
