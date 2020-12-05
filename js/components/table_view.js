@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Add control buttons to existing rows
     existingRows.forEach(tr => {
       const btDelete = createTableFloatingButton('<i class="material-icons">delete</i>', { type: 'click', listener: () => {
-        deletedEntryIds.push(currentTableRows.splice(Array.from(existingRows).findIndex(row => row == tr), 1)[0]);
+        deletedEntryIds.push(currentTable.rows.splice(Array.from(existingRows).findIndex(row => row == tr), 1)[0]);
         console.log(deletedEntryIds);
         tr.remove();
         showAdditionalButtons();
@@ -60,9 +60,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const tdDiv = document.createElement('div');
         td.appendChild(tdDiv);
 
-        const type = currentTableColumns[i]['Type'];
-        const columnKey = currentTableColumns[i]['Key'];
-        const columnExtra = currentTableColumns[i]['Extra'];
+        const type = currentTable.columns[i]['Type'];
+        const columnKey = currentTable.columns[i]['Key'];
+        const columnExtra = currentTable.columns[i]['Extra'];
         // Select function based on type
         const inputCreator = inputTypes[Object.keys(inputTypes).find(key => type.includes(key))];
         if (inputCreator == undefined) console.log('No such input type', type);
@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (columnExtra.includes('auto_increment')) {
           attributes.placeholder = autoPlaceholderText;
         }
-        const content = inputCreator(currentTableColumns[i]['Field'], listener, attributes);
+        const content = inputCreator(currentTable.columns[i]['Field'], listener, attributes);
         if (columnExtra.includes('auto_increment')) {
           content.classList.add('vivid-placeholder');
         }
@@ -111,8 +111,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     btConfirmAdd.addEventListener('click', () => {
       const entries = JSON.stringify(makeNewEntriesArray());
-      const columns = JSON.stringify(currentTableColumns.map(column => column['Field']));
-      sendInterfaceRequest('add_entries', { name: currentTableName, columns, entries }).then(result => {
+      const columns = JSON.stringify(currentTable.columns.map(column => column['Field']));
+      sendInterfaceRequest('add_entries', { name: currentTable.name, columns, entries }).then(result => {
         console.log(result);
         location.reload();
       });

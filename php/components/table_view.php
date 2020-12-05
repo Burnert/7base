@@ -1,11 +1,15 @@
 <?php
 
 function table_view($name, $rows, $columns) {
+  $has_unique_key = false;
 ?>
   <script>
-    const currentTableColumns = JSON.parse('<?php echo json_encode($columns) ?>');
-    const currentTableRows = JSON.parse('<?php echo json_encode($rows) ?>');
-    const currentTableName = '<?php echo $name ?>';
+    const currentTable = {
+      columns: JSON.parse('<?php echo json_encode($columns) ?>'),
+      rows: JSON.parse('<?php echo json_encode($rows) ?>'),
+      name: '<?php echo $name ?>',
+      hasUniqueKey: <?php echo var_export($has_unique_key) ?>,
+    };
     removeLastScriptTag();
   </script>
   <div class="default-container">
