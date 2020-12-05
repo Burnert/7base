@@ -94,11 +94,6 @@ require_once("./php/components/table_view.php");
     $rows = DatabaseManager::get()->select_from_table($tablename);
 
     table_view($rows, $columns);
-    if (!$rows) {
-?>
-      <p class="notice"><?php loc("table_empty") ?></p>
-<?php
-    }
   }
   ?>
   </section>
