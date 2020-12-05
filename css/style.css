@@ -27,14 +27,13 @@
   color: white;
 }
 
-* {
-  font-family: 'Source Sans Pro', sans-serif;
-}
+/* Element styles */
 
 body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
+  font-family: 'Source Sans Pro', sans-serif;
 
   color: var(--inverse);
 }
@@ -278,4 +277,8 @@ textarea:focus {
 
 .vivid-placeholder::placeholder {
   color: var(--secondary);
+}
+
+.light {
+  font-weight: 300;
 }
