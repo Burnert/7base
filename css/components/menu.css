@@ -1,3 +1,5 @@
+/* Menu button */
+
 .menu-button {
   position: relative;
   width: 40px;
@@ -15,6 +17,9 @@
 
   transition: .5s;
 }
+
+/* Menu button animation */
+
 .menu-button.active .menu-bar:nth-child(1) {
   transform: translate(0, 15px) rotate(-45deg);
 }
@@ -25,6 +30,8 @@
 .menu-button.active .menu-bar:nth-child(3) {
   transform: translate(0, -15px) rotate(45deg);
 }
+
+/* Menu */
 
 .menu {
   display: none;
@@ -44,13 +51,11 @@
   transition: .5s;
   transform: translate(400px, 0);
 }
- 
 .menu.active {
   transform: translate(0, 0);
   display: block;
   opacity: 1;
 }
-
 .menu ul {
   list-style: none;
   padding: 0;
@@ -59,7 +64,6 @@
 .menu li {
   padding: 2px 40px;
 }
-
 .menu .table-manager li {
   position: relative;
   width: 100%;
@@ -98,7 +102,6 @@
 .menu .table-manager li:hover > a {
   color: var(--primary);
 }
-
 .menu .table-controls {
   pointer-events: none;
   padding: 0 10px;
@@ -106,6 +109,13 @@
 .menu .table-controls > * {
   pointer-events: initial;
 }
+.menu select,
+.menu select > option {
+  background-color: var(--inverse);
+  font-weight: 300;
+}
+
+/* Settings */
 
 .settings li {
   display: flex;

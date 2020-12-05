@@ -30,7 +30,7 @@ function table_view($rows, $columns) {
             echo $value;
           }
           else {
-            echo "<i>";
+            echo "<i class='empty'>";
             loc("empty");
             echo "</i>";
           }

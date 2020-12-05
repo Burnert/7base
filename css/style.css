@@ -4,7 +4,7 @@
   --primary: #eef0f2ff;
   --secondary: #c6c7c4ff;
   --tertiary: #a2999eff;
-  --accent: #9c7a7a;
+  --accent: #8e7878;
   --inverse: #353b3cff;
   --inverse-strong: #151616;
   --selection: #c4afaf;
@@ -194,10 +194,6 @@ textarea:focus {
 
 .spacer-v {
   height: 20px;
-}
-
-.material-icons {
-  /* color: var(--inverse); */
 }
 
 /* Custom checkbox */
