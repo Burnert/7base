@@ -83,7 +83,7 @@ require_once("./php/components/table_view.php");
     $columns = DatabaseManager::get()->describe_table($tablename);
     $rows = DatabaseManager::get()->select_from_table($tablename);
 
-    table_view($rows, $columns);
+    table_view($tablename, $rows, $columns);
   }
   ?>
   </section>
