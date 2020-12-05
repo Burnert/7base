@@ -2,9 +2,10 @@
   --primary: #eef0f2ff;
   --secondary: #c6c7c4ff;
   --tertiary: #a2999eff;
-  --accent: #846a6aff;
+  --accent: #9c7a7a;
   --inverse: #353b3cff;
   --inverse-strong: #151616;
+  --selection: #c4afaf;
 
   background-color: var(--inverse-strong);
 }
@@ -13,13 +14,14 @@
   --primary: #eef0f2ff;
   --secondary: #c7c3c2;
   --tertiary: #9c9590;
-  --accent: #F46036;
+  --accent: #c8815a;
   --inverse: #3c3537;
   --inverse-strong: #151616;
+  --selection: #d6bcaf;
 }
 
 ::selection {
-  background-color: var(--accent);
+  background-color: var(--selection);
   color: white;
 }
 
