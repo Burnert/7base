@@ -1,14 +1,24 @@
 <?php
 
 function table_view($name, $rows, $columns) {
-  $has_unique_key = false;
+  // Get all unique keys
+  $unique_keys = array_filter($columns, function($column) {
+    return $column["Key"] == "UNI";
+  });
+  // Get primary key
+  $primary_key = array_reduce(array_filter($columns, function($column) {
+    return $column["Key"] == "PRI";
+  }), function($carry, $item) {
+    return $item["Field"];
+  });
+  $has_unique_keys = !empty($unique_keys) || $primary_key;
 ?>
   <script>
     const currentTable = {
       columns: JSON.parse('<?php echo json_encode($columns) ?>'),
       rows: JSON.parse('<?php echo json_encode($rows) ?>'),
       name: '<?php echo $name ?>',
-      hasUniqueKey: <?php echo var_export($has_unique_key) ?>,
+      hasUniqueKey: <?php echo var_export($has_unique_keys) ?>,
     };
     removeLastScriptTag();
   </script>
