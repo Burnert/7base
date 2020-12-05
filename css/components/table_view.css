@@ -123,6 +123,3 @@
 .table-entry.edit select {
   min-width: 200px;
 }
-.table-entry.edit input[type='number'] {
-  width: 100px;
-}
