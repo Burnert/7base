@@ -51,20 +51,20 @@ function table_view($name, $rows, $columns) {
     };
   }
 
-  $foreign_columns = array_map(valueMapper("Column"), $foreign_keys);
+  $foreign_column_names = array_map(valueMapper("Column"), $foreign_keys);
 
-  $foreign_values = [];
+  $foreign_columns = [];
   foreach ($foreign_keys as $key) {
-    $condition_str = "`" . $key["RefColumn"] . "`" . " IN (";
-    // Select used IDs
-    foreach ($rows as $index => $row) {
-      $condition_str .= $row[$key["Column"]];
-      if ($index < count($rows) - 1) {
-        $condition_str .= ", ";
-      }
-    }
-    $condition_str .= ")";
-    $foreign_values[$key["Column"]] = DatabaseManager::get()->select_from_table($key["RefTable"], null, $condition_str);
+    // $condition_str = "`" . $key["RefColumn"] . "`" . " IN (";
+    // // Select used IDs
+    // foreach ($rows as $index => $row) {
+    //   $condition_str .= $row[$key["Column"]];
+    //   if ($index < count($rows) - 1) {
+    //     $condition_str .= ", ";
+    //   }
+    // }
+    // $condition_str .= ")";
+    $foreign_columns[$key["Column"]] = DatabaseManager::get()->select_from_table($key["RefTable"], null, null);
   }
 
   search_window($name, $columns);
@@ -76,6 +76,7 @@ function table_view($name, $rows, $columns) {
       name: '<?php echo addslashes($name) ?>',
       hasUniqueKey: <?php echo var_export($has_unique_keys) ?>,
       primaryKey: '<?php echo $primary_key ?>',
+      foreignColumns: JSON.parse('<?php echo addslashes(json_encode($foreign_columns)) ?>'),
     };
     removeLastScriptTag();
   </script>
@@ -168,9 +169,9 @@ function table_view($name, $rows, $columns) {
                   $ref_column = getForeignKeyByColumn($foreign_keys, $column)["RefColumn"];
                   $foreign_row = getForeignRowByColumnValue($foreign_column, $ref_column, $value);
                   if (isset($foreign_row["name"])) {
-                  echo htmlentities($foreign_row["name"]);
-                }
-                else {
+                    echo htmlentities($foreign_row["name"]);
+                  }
+                  else {
                     echo "<b>" . htmlentities($value) . "</b>";
                   }
                 }

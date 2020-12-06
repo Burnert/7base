@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
   locAutoPlaceholderPromise.then(result => autoPlaceholderText = result);
   // For each entry view table on page
   document.querySelectorAll('.table-view.entry-view').forEach(view => {
+    console.log(currentTable.foreignColumns);
     const inputTypes = {
       int: (name, listener, attributes) => createNumberInput(name, attributes, { type: 'input', listener }),
       varchar: (name, listener, attributes) => createTextInput(name, attributes, { type: 'input', listener }),
@@ -41,14 +42,16 @@ document.addEventListener('DOMContentLoaded', () => {
     if (currentTable.hasUniqueKey) {
       existingRows.forEach((tr, index) => {
         const btDelete = createTableFloatingButton('<i class="material-icons">delete</i>', { type: 'click', listener: () => {
-          // deletedEntryIds.push(currentTable.rows.splice(Array.from(existingRows).findIndex(row => row == tr), 1)[0]);
           deletedEntries.push(currentTable.rows[index]);
           console.log(deletedEntries);
           tr.remove();
           showAdditionalButtons();
         }});
         tr.querySelector('td:first-of-type > div').appendChild(btDelete);
-        // const btEdit = 
+        const btEdit = createTableFloatingButton('<i class="material-icons">create</i>', { type: 'click', listener: () => {
+          
+        }});
+        tr.querySelector('td:last-of-type > div').appendChild(btEdit);
       });
     }
 

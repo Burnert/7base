@@ -121,10 +121,16 @@
 /* Row buttons */
 .table-view tbody .floating-button {
   position: absolute;
-  left: -26px;
   margin: auto;
-  border-radius: 5px 0 0 5px;
   opacity: 0;
+}
+.table-view tbody td:first-of-type .floating-button {
+  left: -26px;
+  border-radius: 5px 0 0 5px;
+}
+.table-view tbody td:last-of-type .floating-button {
+  right: -26px;
+  border-radius: 0 5px 5px 0;
 }
 .table-view tbody tr:hover .floating-button {
   opacity: 1;
