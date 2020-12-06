@@ -3,6 +3,7 @@
 require_once("./php/components/search_window.php");
 
 function table_view($name, $rows, $columns) {
+  global $search_column, $search_query;
   // Get all unique keys
   $unique_keys = array_map(function($value) {
     return $value["Field"];
@@ -66,7 +67,7 @@ function table_view($name, $rows, $columns) {
     $foreign_values[$key["Column"]] = DatabaseManager::get()->select_from_table($key["RefTable"], null, $condition_str);
   }
 
-  search_window($columns);
+  search_window($name, $columns);
 ?>
   <script>
     const currentTable = {
@@ -81,10 +82,11 @@ function table_view($name, $rows, $columns) {
   <div class="default-container">
     <div class="horiz f-center">
       <h3><?php echo ucfirst($name) ?></h3>
-      <button class="soft search">
+      <button class="soft search" title="<?php loc("search") ?>">
         <i class="material-icons">search</i>
       </button>
     </div>
+    <!-- No unique keys warning -->
     <?php if (!$has_unique_keys): ?>
     <div class="spacer-v"></div>
     <div class="warning block-center">
@@ -97,6 +99,33 @@ function table_view($name, $rows, $columns) {
     </div>
     <div class="spacer-v"></div>
     <?php endif; ?>
+    <!-- Showing only queried entries info -->
+    <?php if ($search_column && $search_query): ?>
+    <div class="spacer-v"></div>
+    <div class="info block-center">
+      <div>
+        <i class="material-icons">info</i>
+      </div>
+      <div>
+        <?php 
+        loc("viewing_only_queried");
+        echo "<br>";
+        loc("search_column_name");
+        echo " &ndash; \"<b>$search_column</b>\"";
+        echo "<br>";
+        loc("search_query");
+        echo " &ndash; \"$search_query\"";
+        ?>
+      </div>
+      <div>
+        <a href="index.php?table=<?php echo $name ?>" class="button soft nobg" title="<?php loc("search_back") ?>">
+          <i class="material-icons">settings_backup_restore</i>
+        </a>
+      </div>
+    </div>
+    <div class="spacer-v"></div>
+    <?php endif; ?>
+    <!-- Table view -->
     <div class="table-wrapper">
       <table class="table-view entry-view">
         <tbody>

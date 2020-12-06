@@ -160,7 +160,8 @@ button .material-icons {
   color: var(--secondary);
 }
 
-.warning {
+.warning,
+.info {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -168,10 +169,12 @@ button .material-icons {
   padding: 12px;
   color: var(--inverse);
 }
-.warning > div {
+.warning > div,
+.info > div {
   padding: 12px;
 }
-.warning .material-icons {
+.warning .material-icons,
+.info .material-icons {
   display: block;
 }
 
@@ -184,6 +187,13 @@ button .material-icons {
 }
 .input-generic * {
   margin: 5px;
+}
+
+.material-icons {
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
 }
 
 

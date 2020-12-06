@@ -37,6 +37,8 @@ $lang["search_in"] = "Search in";
 $lang["search_column_name"] = "Column name";
 $lang["search_query"] = "Search query";
 $lang["search"] = "Search";
+$lang["viewing_only_queried"] = "Viewing only queried entries!";
+$lang["search_back"] = "Cancel search";
 // Create table
 $lang["table_name"] = "Table name";
 $lang["name"] = "Name";

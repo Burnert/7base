@@ -90,7 +90,13 @@ require_once("./php/components/table_view.php");
   else if (isset($_GET["table"])) {
     $tablename = $_GET["table"];
     $columns = DatabaseManager::get()->describe_table($tablename);
-    $rows = DatabaseManager::get()->select_from_table($tablename);
+    $condition = null;
+    if (isset($_GET["search_column"]) && isset($_GET["search_query"])) {
+      $search_column = $_GET["search_column"];
+      $search_query = $_GET["search_query"];
+      $condition = "`$search_column` LIKE '%$search_query%'";
+    }
+    $rows = DatabaseManager::get()->select_from_table($tablename, null, $condition);
 
     table_view($tablename, $rows, $columns);
   }
