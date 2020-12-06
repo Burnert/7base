@@ -1,4 +1,11 @@
 <?php
+
+function var_pre($var) {
+  echo '<pre>';
+  var_export($var);
+  echo '</pre>';
+}
+
 session_start();
 
 require_once("./php/localisation.php");
