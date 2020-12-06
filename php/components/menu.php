@@ -86,6 +86,13 @@ function menu($menu_id) {
         <button class="b-apply-settings"><?php loc("settings_apply") ?></button>
       </div>
     </div>
+    <div class='spacer-v'></div>
+    <h4><?php loc("session_settings") ?></h4>
+    <div class="session-settings">
+      <div class="horiz">
+        <button class="b-logout"><?php loc("logout") ?></button>
+      </div>
+    </div>
   </div>
   <script>
     if (mainMenuActive) {

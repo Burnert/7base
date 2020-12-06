@@ -24,6 +24,9 @@ $lang["delete_are_you_sure"] = "Do you really want to delete this table?";
 // Settings
 $lang["language"] = "Language";
 $lang["settings_apply"] = "Apply";
+// Session settings
+$lang["session_settings"] = "Session settings";
+$lang["logout"] = "Logout";
 // Table view
 $lang["table_empty"] = "The table has no records.";
 $lang["table_no_unique_keys"] = "The table has no unique columns!";
