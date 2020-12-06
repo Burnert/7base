@@ -12,6 +12,8 @@ function table_view($name, $rows, $columns) {
     return $item["Field"];
   });
   $has_unique_keys = !empty($unique_keys) || $primary_key;
+  $primary_key_label = "key_primary";
+  $unique_key_label = "key_unique";
 ?>
   <script>
     const currentTable = {
@@ -47,7 +49,7 @@ function table_view($name, $rows, $columns) {
         ?>
             <th>
               <?php if ($name == $primary_key): ?>
-              <button class="soft">
+              <button class="soft" title="<?php loc($primary_key_label) ?>">
                 <i class="material-icons">vpn_key</i>
               </button>
               <?php endif; ?>

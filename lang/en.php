@@ -29,6 +29,8 @@ $lang["table_empty"] = "The table has no records.";
 $lang["table_no_unique_keys"] = "The table has no unique columns!";
 $lang["add_entry"] = "Add entry";
 $lang["delete_entry"] = "Delete entry";
+$lang["key_primary"] = "Primary key";
+$lang["key_unique"] = "Unique key";
 // Create table
 $lang["table_name"] = "Table name";
 $lang["name"] = "Name";

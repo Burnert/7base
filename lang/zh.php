@@ -29,6 +29,8 @@ $lang["table_empty"] = "该表格中没有记录。";
 $lang["table_no_unique_keys"] = "该表格中没有唯一表列！";
 $lang["add_entry"] = "加条目";
 $lang["delete_entry"] = "删除条目";
+$lang["key_primary"] = "首要的关键";
+$lang["key_unique"] = "唯一的关键";
 // Create table
 $lang["table_name"] = "表格的名称";
 $lang["name"] = "名称";

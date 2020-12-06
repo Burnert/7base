@@ -29,6 +29,8 @@ $lang["table_empty"] = "Tabela nie zawiera rekordów.";
 $lang["table_no_unique_keys"] = "Tabela nie zawiera unikatowych kolumn!";
 $lang["add_entry"] = "Dodaj pozycję";
 $lang["delete_entry"] = "Usuń pozycję";
+$lang["key_primary"] = "Klucz podstawowy";
+$lang["key_unique"] = "Klucz unikatowy";
 // Create table
 $lang["table_name"] = "Nazwa tabeli";
 $lang["name"] = "Nazwa";
