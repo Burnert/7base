@@ -2,13 +2,17 @@
 
 function table_view($name, $rows, $columns) {
   // Get all unique keys
-  $unique_keys = array_filter($columns, function($column) {
+  $unique_keys = array_map(function($value) {
+    return $value["Field"];
+  }, array_filter($columns, function($column) {
     return $column["Key"] == "UNI";
-  });
+  }));
   // Get all index keys
-  $unique_keys = array_filter($columns, function($column) {
+  $index_keys = array_map(function($value) {
+    return $value["Field"];
+  }, array_filter($columns, function($column) {
     return $column["Key"] == "MUL";
-  });
+  }));
   // Get primary key
   $primary_key = array_reduce(array_filter($columns, function($column) {
     return $column["Key"] == "PRI";
@@ -19,6 +23,47 @@ function table_view($name, $rows, $columns) {
   $primary_key_label = "key_primary";
   $unique_key_label = "key_unique";
   $index_key_label = "key_index";
+
+  $foreign_keys = DatabaseManager::get()->get_table_foreign_keys($name);
+
+  function getForeignKeyByColumn($f_keys, $column) {
+    return array_reduce(array_filter($f_keys, function($key) use ($column) {
+      return $key["Column"] == $column;
+    }), function($carry, $item) {
+      return $item;
+    });
+  }
+
+  function getForeignRowByColumnValue($f_values, $column, $value) {
+    return array_reduce(array_filter($f_values, function($f_val) use ($column, $value) {
+      return $f_val[$column] == $value;
+    }), function($carry, $item) {
+      return $item;
+    });
+  }
+
+  function valueMapper($name) {
+    return function($value) use ($name) {
+      return $value[$name];
+    };
+  }
+
+  $foreign_columns = array_map(valueMapper("Column"), $foreign_keys);
+
+  $foreign_values = [];
+  foreach ($foreign_keys as $key) {
+    $condition_str = "`" . $key["RefColumn"] . "`" . " IN (";
+    // Select used IDs
+    foreach ($rows as $index => $row) {
+      $condition_str .= $row[$key["Column"]];
+      if ($index < count($rows) - 1) {
+        $condition_str .= ", ";
+      }
+    }
+    $condition_str .= ")";
+    $foreign_values[$key["Column"]] = DatabaseManager::get()->select_from_table($key["RefTable"], null, $condition_str);
+  }
+
 ?>
   <script>
     const currentTable = {
@@ -58,6 +103,13 @@ function table_view($name, $rows, $columns) {
                 <i class="material-icons">vpn_key</i>
               </button>
               <?php endif; ?>
+
+              <?php if (array_search($name, $unique_keys) !== false): ?>
+              <button class="soft" title="<?php loc($unique_key_label) ?>">
+                <i class="material-icons">vpn_key</i>
+              </button>
+              <?php endif; ?>
+
               <span <?php if ($name == $primary_key) echo "class='underline'" ?>>
                 <?php echo $name ?>
               </span>
@@ -70,10 +122,19 @@ function table_view($name, $rows, $columns) {
         if ($rows):
           foreach ($rows as $row) {
             echo "<tr class='table-entry'>";
-            foreach ($row as $value) {
+            foreach ($row as $column => $value) {
               echo "<td><div><span>";
               if ($value != "") {
-                echo htmlentities($value);
+                // If column has foreign key
+                if (array_search($column, $foreign_columns) !== false) {
+                  $foreign_column = $foreign_values[$column];
+                  $ref_column = getForeignKeyByColumn($foreign_keys, $column)["RefColumn"];
+                  $foreign_row = getForeignRowByColumnValue($foreign_column, $ref_column, $value);
+                  echo htmlentities($foreign_row["name"]);
+                }
+                else {
+                  echo htmlentities($value);
+                }
               }
               else {
                 echo "<i class='empty'>";
