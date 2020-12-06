@@ -5,6 +5,10 @@ function table_view($name, $rows, $columns) {
   $unique_keys = array_filter($columns, function($column) {
     return $column["Key"] == "UNI";
   });
+  // Get all index keys
+  $unique_keys = array_filter($columns, function($column) {
+    return $column["Key"] == "MUL";
+  });
   // Get primary key
   $primary_key = array_reduce(array_filter($columns, function($column) {
     return $column["Key"] == "PRI";
@@ -14,6 +18,7 @@ function table_view($name, $rows, $columns) {
   $has_unique_keys = !empty($unique_keys) || $primary_key;
   $primary_key_label = "key_primary";
   $unique_key_label = "key_unique";
+  $index_key_label = "key_index";
 ?>
   <script>
     const currentTable = {
