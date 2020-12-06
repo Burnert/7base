@@ -25,6 +25,7 @@ $lang["language"] = "Język";
 $lang["settings_apply"] = "Zastosuj";
 // Table view
 $lang["table_empty"] = "Tabela nie zawiera rekordów.";
+$lang["table_no_unique_keys"] = "Tabela nie zawiera unikatowych kolumn!";
 $lang["add_entry"] = "Dodaj pozycję";
 $lang["delete_entry"] = "Usuń pozycję";
 // Create table

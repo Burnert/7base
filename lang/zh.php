@@ -24,7 +24,8 @@ $lang["delete_are_you_sure"] = "你确定要删除这张表吗？";
 $lang["language"] = "语言";
 $lang["settings_apply"] = "使用";
 // Table view
-$lang["table_empty"] = "这张表格没有记录。";
+$lang["table_empty"] = "该表格中没有记录。";
+$lang["table_no_unique_keys"] = "该表格中没有唯一表列！";
 $lang["add_entry"] = "加条目";
 $lang["delete_entry"] = "删除条目";
 // Create table
@@ -37,7 +38,7 @@ $lang["default_value"] = "默认值";
 $lang["nullable"] = "可为空";
 $lang["index"] = "指数";
 $lang["auto_increment"] = "自动++";
-$lang["add_column"] = "加栏";
-$lang["delete_column"] = "删除栏";
+$lang["add_column"] = "加表列";
+$lang["delete_column"] = "删除表列";
 
 ?>
