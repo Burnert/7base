@@ -31,6 +31,12 @@ $lang["add_entry"] = "Add entry";
 $lang["delete_entry"] = "Delete entry";
 $lang["key_primary"] = "Primary key";
 $lang["key_unique"] = "Unique key";
+// Search in table
+$lang["search_in_table"] = "Search in table";
+$lang["search_in"] = "Search in";
+$lang["search_column_name"] = "Column name";
+$lang["search_query"] = "Search query";
+$lang["search"] = "Search";
 // Create table
 $lang["table_name"] = "Table name";
 $lang["name"] = "Name";
