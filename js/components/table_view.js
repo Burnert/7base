@@ -6,15 +6,15 @@ document.addEventListener('DOMContentLoaded', () => {
   // For each entry view table on page
   document.querySelectorAll('.table-view.entry-view').forEach(view => {
     const inputTypes = {
-      int: (name, listener, attributes) => createNumberInput(name, attributes, { type: 'change', listener }),
-      varchar: (name, listener, attributes) => createTextInput(name, attributes, { type: 'change', listener }),
-      text: (name, listener) => {
-        const textarea = createTextArea(name, {}, { type: 'change', listener });
+      int: (name, listener, attributes) => createNumberInput(name, attributes, { type: 'input', listener }),
+      varchar: (name, listener, attributes) => createTextInput(name, attributes, { type: 'input', listener }),
+      text: (name, listener, attributes) => {
+        const textarea = createTextArea(name, attributes, { type: 'input', listener });
         textarea.addEventListener('DOMNodeInserted', () => textarea.style.minWidth = textarea.offsetWidth + 'px');
         return textarea;
       },
-      date: (name, listener) => createDateInput(name, {}, { type: 'change', listener }),
-      decimal: (name, listener) => createNumberInput(name, {}, { type: 'change', listener }),
+      date: (name, listener, attributes) => createDateInput(name, attributes, { type: 'input', listener }),
+      decimal: (name, listener, attributes) => createNumberInput(name, attributes, { type: 'input', listener }),
     };
 
     function showAdditionalButtons() {
@@ -61,9 +61,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const tdDiv = document.createElement('div');
         td.appendChild(tdDiv);
 
-        const type = currentTable.columns[i]['Type'];
-        const columnKey = currentTable.columns[i]['Key'];
-        const columnExtra = currentTable.columns[i]['Extra'];
+        const currentColumn = currentTable.columns[i];
+        const type = currentColumn['Type'];
+        const columnKey = currentColumn['Key'];
+        const columnNullable = currentColumn['Null'] == 'YES';
+        const columnExtra = currentColumn['Extra'];
+        const columnAutoInc = columnExtra.includes('auto_increment');
         // Select function based on type
         const inputCreator = inputTypes[Object.keys(inputTypes).find(key => type.includes(key))];
         if (inputCreator == undefined) console.log('No such input type', type);
@@ -73,14 +76,17 @@ document.addEventListener('DOMContentLoaded', () => {
           maxlength = type.substring(type.lastIndexOf('(') + 1, type.length - 1);
         }
         const listener = event => {
-
+          event.target.classList.remove('error');
         }
         const attributes = { maxlength };
-        if (columnExtra.includes('auto_increment')) {
+        if (!(columnNullable || columnAutoInc)) {
+          attributes.required = true;
+        }
+        if (columnAutoInc) {
           attributes.placeholder = autoPlaceholderText;
         }
         const content = inputCreator(currentTable.columns[i]['Field'], listener, attributes);
-        if (columnExtra.includes('auto_increment')) {
+        if (columnAutoInc) {
           content.classList.add('vivid-placeholder');
         }
         const editEntriesAmt = table.querySelectorAll('.table-entry.edit').length - 1;
@@ -103,6 +109,11 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       showAdditionalButtons();
     }
+
+    function getNullRequiredFields() {
+      const requiredFields = table.querySelectorAll('input[required="true"]');
+      return Array.from(requiredFields).filter(input => input.value == '');
+    }
     
     const btAddEntry = view.querySelector('#b-add-entry');
     const btConfirm = view.querySelector('#b-confirm-add');
@@ -111,7 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
     btAddEntry.addEventListener('click', () => addEntry());
 
     btConfirm.addEventListener('click', async () => {
-      new Promise((resolve) => {
+      await new Promise((resolve) => {
         const bAddEntries = !!table.querySelectorAll('.table-entry.edit').length;
         const bDeleteEntries = !!deletedEntries.length;
         console.log(bAddEntries, bDeleteEntries);
@@ -119,17 +130,24 @@ document.addEventListener('DOMContentLoaded', () => {
         let doneRequests = 0;
         const tryResolve = () => {
           if (++doneRequests == bAddEntries + bDeleteEntries) {
+            console.log(doneRequests);
             resolve();
           }
         };
         // Add entries
         if (bAddEntries) {
-          const entries = JSON.stringify(makeNewEntriesArray());
-          const columns = JSON.stringify(currentTable.columns.map(column => column['Field']));
-          sendInterfaceRequest('add_entries', { name: currentTable.name, columns, entries }).then(result => {
-            console.log(result);
-            tryResolve();
-          });
+          const nullRequiredFields = getNullRequiredFields();
+          if (nullRequiredFields.length == 0) {
+            const entries = JSON.stringify(makeNewEntriesArray());
+            const columns = JSON.stringify(currentTable.columns.map(column => column['Field']));
+            sendInterfaceRequest('add_entries', { name: currentTable.name, columns, entries }).then(result => {
+              console.log(result);
+              tryResolve();
+            });
+          }
+          else {
+            nullRequiredFields.forEach(field => field.classList.add('error'));
+          }
         }
         // Delete entries if able to
         if (bDeleteEntries) {
@@ -143,7 +161,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }
           }
         }
-      }).then(location.reload());
+      });
+      location.reload();
     });
 
     btCancel.addEventListener('click', () => location.reload());

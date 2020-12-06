@@ -10,6 +10,8 @@
   --selection: #c4afaf;
 
   background-color: var(--inverse-strong);
+
+  --error: #c01414;
 }
 
 :root.theme-1 {
@@ -213,6 +215,12 @@ textarea:focus {
 
 .spacer-v {
   height: 20px;
+}
+
+input.error,
+select.error,
+textarea.error {
+  border: 1px solid var(--error);
 }
 
 /* Custom checkbox */
