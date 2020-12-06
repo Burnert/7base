@@ -37,18 +37,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const existingRows = table.querySelectorAll('.table-entry');
 
     const deletedEntries = [];
-    // Add control buttons to existing rows
-    existingRows.forEach((tr, index) => {
-      const btDelete = createTableFloatingButton('<i class="material-icons">delete</i>', { type: 'click', listener: () => {
-        // deletedEntryIds.push(currentTable.rows.splice(Array.from(existingRows).findIndex(row => row == tr), 1)[0]);
-        deletedEntries.push(currentTable.rows[index]);
-        console.log(deletedEntries);
-        tr.remove();
-        showAdditionalButtons();
-      }});
-      tr.querySelector('td:first-of-type > div').appendChild(btDelete);
-      // const btEdit = 
-    });
+    // Add control buttons to existing rows if the table has any unique key
+    if (currentTable.hasUniqueKey) {
+      existingRows.forEach((tr, index) => {
+        const btDelete = createTableFloatingButton('<i class="material-icons">delete</i>', { type: 'click', listener: () => {
+          // deletedEntryIds.push(currentTable.rows.splice(Array.from(existingRows).findIndex(row => row == tr), 1)[0]);
+          deletedEntries.push(currentTable.rows[index]);
+          console.log(deletedEntries);
+          tr.remove();
+          showAdditionalButtons();
+        }});
+        tr.querySelector('td:first-of-type > div').appendChild(btDelete);
+        // const btEdit = 
+      });
+    }
 
     const tdCount = table.querySelectorAll('th').length;
 
