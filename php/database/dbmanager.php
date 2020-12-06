@@ -22,7 +22,7 @@ class DatabaseManager {
   }
 
   private function query($query) {
-    $result = @mysqli_query($this->link, $query);
+    $result = mysqli_query($this->link, $query);
     return $result;
   }
 
@@ -63,7 +63,7 @@ class DatabaseManager {
     if ($values && is_array($values)) {
       for ($i = 0; $i < count($values); $i++) {
         $value = mysqli_real_escape_string($this->link, $values[$i]);
-        
+
         $query .= $value;
         if ($i < count($values) - 1) {
           $query .= ", ";
@@ -124,8 +124,26 @@ class DatabaseManager {
         }
       }
       $query .= ";";
-      echo $query;
-      $this->query($query);
+      $result = $this->query($query);
+      echo var_export($result);
+    }
+  }
+
+  public function delete_entries_unique($name, $key, $entries) {
+    $name = mysqli_real_escape_string($this->link, $name);
+
+    if ($entries && is_array($entries)) {
+      $query = "DELETE FROM `$name` WHERE $key IN (";
+
+      foreach ($entries as $index => $value) {
+        $query .= "'$value'";
+        if ($index < count($entries) - 1) {
+          $query .= ", ";
+        }
+      }
+      $query .= ");";
+      $result = $this->query($query);
+      echo var_export($result);
     }
   }
 

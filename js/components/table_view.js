@@ -36,12 +36,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const table = view.querySelector('tbody');
     const existingRows = table.querySelectorAll('.table-entry');
 
-    const deletedEntryIds = [];
+    const deletedEntries = [];
     // Add control buttons to existing rows
-    existingRows.forEach(tr => {
+    existingRows.forEach((tr, index) => {
       const btDelete = createTableFloatingButton('<i class="material-icons">delete</i>', { type: 'click', listener: () => {
-        deletedEntryIds.push(currentTable.rows.splice(Array.from(existingRows).findIndex(row => row == tr), 1)[0]);
-        console.log(deletedEntryIds);
+        // deletedEntryIds.push(currentTable.rows.splice(Array.from(existingRows).findIndex(row => row == tr), 1)[0]);
+        deletedEntries.push(currentTable.rows[index]);
+        console.log(deletedEntries);
         tr.remove();
         showAdditionalButtons();
       }});
@@ -104,21 +105,47 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     const btAddEntry = view.querySelector('#b-add-entry');
-    const btConfirmAdd = view.querySelector('#b-confirm-add');
-    const btCancelAdd = view.querySelector('#b-cancel-add');
+    const btConfirm = view.querySelector('#b-confirm-add');
+    const btCancel = view.querySelector('#b-cancel-add');
 
     btAddEntry.addEventListener('click', () => addEntry());
 
-    btConfirmAdd.addEventListener('click', () => {
-      const entries = JSON.stringify(makeNewEntriesArray());
-      const columns = JSON.stringify(currentTable.columns.map(column => column['Field']));
-      sendInterfaceRequest('add_entries', { name: currentTable.name, columns, entries }).then(result => {
-        console.log(result);
-        location.reload();
-      });
-      // const updateEntries;
+    btConfirm.addEventListener('click', async () => {
+      new Promise((resolve) => {
+        const bAddEntries = !!table.querySelectorAll('.table-entry.edit').length;
+        const bDeleteEntries = !!deletedEntries.length;
+        console.log(bAddEntries, bDeleteEntries);
+        // Resolve when all requests are complete
+        let doneRequests = 0;
+        const tryResolve = () => {
+          if (++doneRequests == bAddEntries + bDeleteEntries) {
+            resolve();
+          }
+        };
+        // Add entries
+        if (bAddEntries) {
+          const entries = JSON.stringify(makeNewEntriesArray());
+          const columns = JSON.stringify(currentTable.columns.map(column => column['Field']));
+          sendInterfaceRequest('add_entries', { name: currentTable.name, columns, entries }).then(result => {
+            console.log(result);
+            tryResolve();
+          });
+        }
+        // Delete entries if able to
+        if (bDeleteEntries) {
+          if (currentTable.hasUniqueKey) {
+            if (currentTable.primaryKey) {
+              const deletedUnique = JSON.stringify(deletedEntries.map(entry => entry[currentTable.primaryKey]));
+              sendInterfaceRequest('delete_entries_unique', { name: currentTable.name, key: currentTable.primaryKey, entries: deletedUnique }).then(result => {
+                console.log(result);
+                tryResolve();
+              });
+            }
+          }
+        }
+      }).then(location.reload());
     });
 
-    btCancelAdd.addEventListener('click', () => location.reload());
+    btCancel.addEventListener('click', () => location.reload());
   });
 });

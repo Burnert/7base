@@ -19,6 +19,7 @@ function table_view($name, $rows, $columns) {
       rows: JSON.parse('<?php echo json_encode($rows) ?>'),
       name: '<?php echo $name ?>',
       hasUniqueKey: <?php echo var_export($has_unique_keys) ?>,
+      primaryKey: '<?php echo $primary_key ?>',
     };
     removeLastScriptTag();
   </script>
