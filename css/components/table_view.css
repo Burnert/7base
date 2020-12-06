@@ -86,6 +86,9 @@
   margin-right: 5px;
   border-radius: 5px;
 }
+.table-view th button.primary-key {
+  color: var(--tertiary);
+}
 .table-view tfoot td > div {
   display: flex;
   flex-direction: row-reverse;

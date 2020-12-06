@@ -49,7 +49,7 @@ function table_view($name, $rows, $columns) {
         ?>
             <th>
               <?php if ($name == $primary_key): ?>
-              <button class="soft" title="<?php loc($primary_key_label) ?>">
+              <button class="soft primary-key" title="<?php loc($primary_key_label) ?>">
                 <i class="material-icons">vpn_key</i>
               </button>
               <?php endif; ?>
