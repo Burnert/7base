@@ -56,10 +56,15 @@ class DatabaseManager {
   }
 
   public function select_from_table($name, $values = null, $condition = null) {
+    $name = mysqli_real_escape_string($this->link, $name);
+    $condition = mysqli_real_escape_string($this->link, $name);
+
     $query = "SELECT ";
     if ($values && is_array($values)) {
       for ($i = 0; $i < count($values); $i++) {
-        $query .= $values[$i];
+        $value = mysqli_real_escape_string($this->link, $values[$i]);
+        
+        $query .= $value;
         if ($i < count($values) - 1) {
           $query .= ", ";
         }
@@ -80,11 +85,15 @@ class DatabaseManager {
   }
 
   public function add_entries($name, $columns, $entries) {
+    $name = mysqli_real_escape_string($this->link, $name);
+
     if ($entries && is_array($entries) &&
         $columns && is_array($columns)) {
       $query = "INSERT INTO `$name` (";
       // Column names
       foreach ($columns as $index => $column) {
+        $column = mysqli_real_escape_string($this->link, $column);
+
         $query .= "`$column`";
         if ($index < count($columns) - 1) {
           $query .= ", ";
@@ -98,6 +107,8 @@ class DatabaseManager {
         $entry_array = (array) $entry;
         foreach ($entry_array as $column => $value) {
           if ($value != "") {
+            $value = mysqli_real_escape_string($this->link, $value);
+
             $query .= "'$value'";
           }
           else {
