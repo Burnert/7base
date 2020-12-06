@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
   const searchWindow = document.querySelector('.search-window');
+  if (!searchWindow) return; 
   const btSearch = document.querySelector('button.search');
   const btExit = searchWindow.querySelector('.exit');
   

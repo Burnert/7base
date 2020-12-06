@@ -66,7 +66,7 @@ require_once("./php/components/table_view.php");
   <section class="main">
   <?php
   // Plain action
-  if (isset($_GET["action"])) {
+  if (isset($_GET["action"]) && !isset($_GET["table"])) {
     $action = $_GET["action"];
     switch ($action) {
       case "create": {
@@ -79,12 +79,11 @@ require_once("./php/components/table_view.php");
     $action = $_GET["action"];
     switch ($action) {
       case "edit": {
-
       } break;
       case "delete": {
-
       } break;
     }
+    echo "WORK IN PROGRESS!";
   }
   // View table
   else if (isset($_GET["table"])) {
