@@ -5,7 +5,6 @@ document.addEventListener('DOMContentLoaded', () => {
   locAutoPlaceholderPromise.then(result => autoPlaceholderText = result);
   // For each entry view table on page
   document.querySelectorAll('.table-view.entry-view').forEach(view => {
-    console.log(currentTable.foreignColumns);
     const inputTypes = {
       int: (name, listener, attributes) => createNumberInput(name, attributes, { type: 'input', listener }),
       varchar: (name, listener, attributes) => createTextInput(name, attributes, { type: 'input', listener }),
