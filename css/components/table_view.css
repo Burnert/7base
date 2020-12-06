@@ -71,10 +71,14 @@
 .table-entry td, .table-view tbody th {
   padding: 5px 15px;
 }
+.table-view th {
+  white-space: nowrap;
+}
 .table-view tbody td, .table-view tbody th {
   border: 1px solid var(--tertiary);
 }
 .table-view th > * {
+  display: inline-block;
   vertical-align: middle;
 }
 .table-view th > button {

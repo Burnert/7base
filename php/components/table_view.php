@@ -43,20 +43,17 @@ function table_view($name, $rows, $columns) {
         <?php if ($columns):
           echo "<tr>";
           foreach ($columns as $column) {
+            $name = $column["Field"];
         ?>
             <th>
-              <?php 
-              $name = $column["Field"];
-              if ($column["Field"] == $primary_key) {
-                $name = "<u>" . $name . "</u>";
-              ?>
+              <?php if ($name == $primary_key): ?>
               <button class="soft">
                 <i class="material-icons">vpn_key</i>
               </button>
-              <?php
-              }
-              echo $name;
-              ?>
+              <?php endif; ?>
+              <span <?php if ($name == $primary_key) echo "class='underline'" ?>>
+                <?php echo $name ?>
+              </span>
             </th>
         <?php
           }
