@@ -36,11 +36,11 @@ function menu($menu_id) {
         <li>
           <a href="index.php?table=<?php echo $value ?>"><?php echo $value ?></a>
           <div class="overlay table-controls horiz sb">
-            <a href="index.php?table=<?php echo $value ?>&action=edit" class="b-edit-table button soft nobg" title="<?php loc("edit_table") ?>">
-              <i class="material-icons">create</i>
-            </a>
             <a href="index.php?table=<?php echo $value ?>&action=delete" class="b-delete-table button soft nobg" title="<?php loc("delete_table") ?>">
               <i class="material-icons">delete_forever</i>
+            </a>
+            <a href="index.php?table=<?php echo $value ?>&action=edit" class="b-edit-table button soft nobg" title="<?php loc("edit_table") ?>">
+              <i class="material-icons">create</i>
             </a>
           </div>
         </li>
