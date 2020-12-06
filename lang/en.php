@@ -25,6 +25,7 @@ $lang["language"] = "Language";
 $lang["settings_apply"] = "Apply";
 // Table view
 $lang["table_empty"] = "The table has no records.";
+$lang["table_no_unique_keys"] = "The table has no unique columns!";
 $lang["add_entry"] = "Add entry";
 $lang["delete_entry"] = "Delete entry";
 // Create table

@@ -24,15 +24,27 @@ function table_view($name, $rows, $columns) {
   </script>
   <div class="default-container">
     <h3><?php echo ucfirst($name) ?></h3>
+    <?php if (!$has_unique_keys): ?>
+    <div class="spacer-v"></div>
+    <div class="warning block-center">
+      <div>
+        <i class="material-icons">warning</i>
+      </div>
+      <div>
+        <?php loc("table_no_unique_keys") ?>
+      </div>
+    </div>
+    <div class="spacer-v"></div>
+    <?php endif; ?>
     <div class="table-wrapper">
       <table class="table-view entry-view">
         <tbody>
         <?php if ($columns):
           echo "<tr>";
           foreach ($columns as $column) {
-    ?>
+        ?>
             <th><?php echo $column["Field"] ?></th>
-    <?php
+        <?php
           }
           echo "</tr>";
         endif;
@@ -55,7 +67,7 @@ function table_view($name, $rows, $columns) {
             echo "</tr>";
           }
         endif;
-    ?>
+        ?>
         </tbody>
         <tfoot>
           <tr>

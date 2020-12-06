@@ -140,16 +140,27 @@ button .material-icons {
   display: block;
 }
 
-
-
-
-table td button {
-  color: var(--tertiary);
-}
+/* Generic elements */
 
 .notice {
   text-align: center;
   color: var(--secondary);
+}
+
+.warning {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+  padding: 12px;
+  background-color: var(--inverse-strong);
+  color: var(--inverse);
+}
+.warning > div {
+  padding: 12px;
+}
+.warning .material-icons {
+  display: block;
 }
 
 
