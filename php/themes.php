@@ -18,5 +18,6 @@ function add_theme($theme_id, $theme_name) {
 
 add_theme("null", "theme_none");
 add_theme("theme-1", "theme_theme-1");
+add_theme("theme-2", "theme_theme-2");
 
 ?>

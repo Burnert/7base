@@ -12,6 +12,7 @@ $lang["all_rights_reserved"] = "Wszelkie prawa zastrzeżone";
 $lang["theme"] = "Styl";
 $lang["theme_none"] = "Domyślny";
 $lang["theme_theme-1"] = "Ciepły";
+$lang["theme_theme-2"] = "Jasny";
 // Menu
 $lang["table_manager"] = "Zarządzanie tabelami";
 $lang["settings"] = "Ustawienia";
