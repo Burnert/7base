@@ -163,11 +163,16 @@ function table_view($name, $rows, $columns) {
               echo "<td><div><span>";
               if ($value != "") {
                 // If column has foreign key
-                if (array_search($column, $foreign_columns) !== false) {
-                  $foreign_column = $foreign_values[$column];
+                if (array_search($column, $foreign_column_names) !== false) {
+                  $foreign_column = $foreign_columns[$column];
                   $ref_column = getForeignKeyByColumn($foreign_keys, $column)["RefColumn"];
                   $foreign_row = getForeignRowByColumnValue($foreign_column, $ref_column, $value);
+                  if (isset($foreign_row["name"])) {
                   echo htmlentities($foreign_row["name"]);
+                }
+                else {
+                    echo "<b>" . htmlentities($value) . "</b>";
+                  }
                 }
                 else {
                   echo htmlentities($value);
