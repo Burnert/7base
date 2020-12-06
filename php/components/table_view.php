@@ -68,7 +68,7 @@ function table_view($name, $rows, $columns) {
             echo "<tr class='table-entry'>";
             foreach ($row as $value) {
               echo "<td><div><span>";
-              if ($value) {
+              if ($value != "") {
                 echo htmlentities($value);
               }
               else {
