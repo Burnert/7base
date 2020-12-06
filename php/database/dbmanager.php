@@ -57,7 +57,7 @@ class DatabaseManager {
 
   public function select_from_table($name, $values = null, $condition = null) {
     $name = mysqli_real_escape_string($this->link, $name);
-    $condition = mysqli_real_escape_string($this->link, $name);
+    $condition = mysqli_real_escape_string($this->link, $condition);
 
     $query = "SELECT ";
     if ($values && is_array($values)) {
