@@ -74,6 +74,14 @@
 .table-view tbody td, .table-view tbody th {
   border: 1px solid var(--tertiary);
 }
+.table-view th > * {
+  vertical-align: middle;
+}
+.table-view th > button {
+  color: var(--inverse);
+  margin-right: 5px;
+  border-radius: 5px;
+}
 .table-view tfoot td > div {
   display: flex;
   flex-direction: row-reverse;

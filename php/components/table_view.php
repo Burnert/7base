@@ -43,7 +43,20 @@ function table_view($name, $rows, $columns) {
           echo "<tr>";
           foreach ($columns as $column) {
         ?>
-            <th><?php echo $column["Field"] ?></th>
+            <th>
+              <?php 
+              $name = $column["Field"];
+              if ($column["Field"] == $primary_key) {
+                $name = "<u>" . $name . "</u>";
+              ?>
+              <button class="soft">
+                <i class="material-icons">vpn_key</i>
+              </button>
+              <?php
+              }
+              echo $name;
+              ?>
+            </th>
         <?php
           }
           echo "</tr>";
