@@ -22,8 +22,8 @@ document.addEventListener('DOMContentLoaded', () => {
       view.querySelectorAll('#b-confirm-add, #b-cancel-add').forEach(button => button.style.display = 'block');
     }
 
-    function makeNewEntriesArray() {
-      const rows = table.querySelectorAll('.table-entry.edit');
+    function makeNewEntriesArray(selector) {
+      const rows = table.querySelectorAll(selector);
       const entries = [];
       rows.forEach(row => {
         const entryObj = {};
@@ -35,9 +35,45 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const table = view.querySelector('tbody');
+    const columnsRow = table.querySelector('tr.columns');
     const existingRows = table.querySelectorAll('.table-entry');
 
+    function createFieldInput(column) {
+      const columnName = column['Field'];
+      const columnType = column['Type'];
+      const columnKey = column['Key'];
+      const columnNullable = column['Null'] == 'YES';
+      const columnExtra = column['Extra'];
+      const columnAutoInc = columnExtra.includes('auto_increment');
+      // Select function based on type
+      const inputCreator = inputTypes[Object.keys(inputTypes).find(key => columnType.includes(key))];
+      if (inputCreator == undefined) console.log('No such input type', columnType);
+      let maxlength;
+      // If has max length
+      if (columnType.includes('(')) {
+        maxlength = columnType.substring(columnType.lastIndexOf('(') + 1, columnType.length - 1);
+      }
+      const listener = event => {
+        event.target.classList.remove('error');
+      }
+      const attributes = { maxlength };
+      if (!(columnNullable || columnAutoInc)) {
+        attributes.required = true;
+      }
+      if (columnAutoInc) {
+        attributes.placeholder = autoPlaceholderText;
+      }
+      const content = inputCreator(columnName, listener, attributes);
+      if (columnAutoInc) {
+        content.classList.add('vivid-placeholder');
+      }
+      const editEntriesAmt = table.querySelectorAll('.table-entry.edit').length - 1;
+
+      return content;
+    }
+
     const deletedEntries = [];
+    const entriesToUpdate = [];
     // Add control buttons to existing rows if the table has any unique key
     if (currentTable.hasUniqueKey) {
       existingRows.forEach((tr, index) => {
@@ -48,8 +84,26 @@ document.addEventListener('DOMContentLoaded', () => {
           showAdditionalButtons();
         }});
         tr.querySelector('td:first-of-type > div').appendChild(btDelete);
-        const btEdit = createTableFloatingButton('<i class="material-icons">create</i>', { type: 'click', listener: () => {
-          
+        const btEdit = createTableFloatingButton('<i class="material-icons">create</i>', { type: 'click', listener: (event) => {
+          tr.classList.add('edit', 'update');
+          event.target.remove();
+          const fields = currentTable.rows[index];
+          const fieldElements = tr.querySelectorAll('td span.value');
+          // Loop through fields
+          Object.keys(fields).forEach((fieldName, index) => {
+            const field = fields[fieldName];
+            const fieldElement = fieldElements[index];
+            const column = currentTable.columns[index];
+
+            const replacementInput = createFieldInput(column);
+            replacementInput.value = field;
+            fieldElement.replaceWith(replacementInput);
+
+            if (column['Key'] == 'PRI') {
+              entriesToUpdate.push(field);
+            }
+          });
+          showAdditionalButtons();
         }});
         tr.querySelector('td:last-of-type > div').appendChild(btEdit);
       });
@@ -59,7 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function addEntry() {
       const tr = table.insertRow(table.rows.length);
-      tr.classList.add('table-entry', 'edit');
+      tr.classList.add('table-entry', 'edit', 'add');
       // For each field
       for (let i = 0; i < tdCount; i++) {
         const td = tr.insertCell(i);
@@ -67,34 +121,8 @@ document.addEventListener('DOMContentLoaded', () => {
         td.appendChild(tdDiv);
 
         const currentColumn = currentTable.columns[i];
-        const type = currentColumn['Type'];
-        const columnKey = currentColumn['Key'];
-        const columnNullable = currentColumn['Null'] == 'YES';
-        const columnExtra = currentColumn['Extra'];
-        const columnAutoInc = columnExtra.includes('auto_increment');
-        // Select function based on type
-        const inputCreator = inputTypes[Object.keys(inputTypes).find(key => type.includes(key))];
-        if (inputCreator == undefined) console.log('No such input type', type);
-        let maxlength;
-        // If has max length
-        if (type.includes('(')) {
-          maxlength = type.substring(type.lastIndexOf('(') + 1, type.length - 1);
-        }
-        const listener = event => {
-          event.target.classList.remove('error');
-        }
-        const attributes = { maxlength };
-        if (!(columnNullable || columnAutoInc)) {
-          attributes.required = true;
-        }
-        if (columnAutoInc) {
-          attributes.placeholder = autoPlaceholderText;
-        }
-        const content = inputCreator(currentTable.columns[i]['Field'], listener, attributes);
-        if (columnAutoInc) {
-          content.classList.add('vivid-placeholder');
-        }
-        const editEntriesAmt = table.querySelectorAll('.table-entry.edit').length - 1;
+        const content = createFieldInput(currentColumn);
+
         // Insert control buttons in first td
         if (i == 0) {
           const btDelete = createTableFloatingButton('<i class="material-icons">delete</i>', { type: 'click', listener: () => {
@@ -128,41 +156,51 @@ document.addEventListener('DOMContentLoaded', () => {
 
     btConfirm.addEventListener('click', async () => {
       await new Promise((resolve) => {
-        const bAddEntries = !!table.querySelectorAll('.table-entry.edit').length;
+        const bAddEntries = !!table.querySelectorAll('.table-entry.add').length;
+        const bUpdateEntries = !!table.querySelectorAll('.table-entry.update').length;
         const bDeleteEntries = !!deletedEntries.length;
-        console.log(bAddEntries, bDeleteEntries);
         // Resolve when all requests are complete
         let doneRequests = 0;
         const tryResolve = () => {
-          if (++doneRequests == bAddEntries + bDeleteEntries) {
+          if (++doneRequests == bAddEntries + bUpdateEntries + bDeleteEntries) {
             console.log(doneRequests);
             resolve();
           }
         };
-        // Add entries
-        if (bAddEntries) {
-          const nullRequiredFields = getNullRequiredFields();
-          if (nullRequiredFields.length == 0) {
-            const entries = JSON.stringify(makeNewEntriesArray());
+
+        const nullRequiredFields = getNullRequiredFields();
+        if (nullRequiredFields.length > 0) {
+          nullRequiredFields.forEach(field => field.classList.add('error'));
+        }
+        else {
+          // Add entries
+          if (bAddEntries) {
+            const entries = JSON.stringify(makeNewEntriesArray('.table-entry.add'));
             const columns = JSON.stringify(currentTable.columns.map(column => column['Field']));
             sendInterfaceRequest('add_entries', { name: currentTable.name, columns, entries }).then(result => {
               console.log(result);
               tryResolve();
             });
           }
-          else {
-            nullRequiredFields.forEach(field => field.classList.add('error'));
+          // Update entries
+          if (bUpdateEntries) {
+            const entriesOld = JSON.stringify(entriesToUpdate.map(id => currentTable.rows.find(row => row[currentTable.primaryKey] == id)));
+            const entriesNew = JSON.stringify(makeNewEntriesArray('.table-entry.update'));
+            sendInterfaceRequest('update_entries_unique', { name: currentTable.name, key: currentTable.primaryKey, entriesOld, entriesNew }).then(result => {
+              console.log(result);
+              tryResolve();
+            });
           }
-        }
-        // Delete entries if able to
-        if (bDeleteEntries) {
-          if (currentTable.hasUniqueKey) {
-            if (currentTable.primaryKey) {
-              const deletedUnique = JSON.stringify(deletedEntries.map(entry => entry[currentTable.primaryKey]));
-              sendInterfaceRequest('delete_entries_unique', { name: currentTable.name, key: currentTable.primaryKey, entries: deletedUnique }).then(result => {
-                console.log(result);
-                tryResolve();
-              });
+          // Delete entries if able to
+          if (bDeleteEntries) {
+            if (currentTable.hasUniqueKey) {
+              if (currentTable.primaryKey) {
+                const deletedUnique = JSON.stringify(deletedEntries.map(entry => entry[currentTable.primaryKey]));
+                sendInterfaceRequest('delete_entries_unique', { name: currentTable.name, key: currentTable.primaryKey, entries: deletedUnique }).then(result => {
+                  console.log(result);
+                  tryResolve();
+                });
+              }
             }
           }
         }

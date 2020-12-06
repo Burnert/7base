@@ -150,7 +150,7 @@ class DatabaseManager {
   public function delete_entries_unique($name, $key, $entries) {
     $name = mysqli_real_escape_string($this->link, $name);
 
-    if ($entries && is_array($entries)) {
+    if ($key && $entries && is_array($entries)) {
       $query = "DELETE FROM `$name` WHERE $key IN (";
 
       foreach ($entries as $index => $value) {
@@ -162,6 +162,36 @@ class DatabaseManager {
       $query .= ");";
       $result = $this->query($query);
       echo var_export($result);
+    }
+  }
+
+  public function update_entries_unique($name, $primary_key, $entries) {
+    $name = mysqli_real_escape_string($this->link, $name);
+
+    if ($primary_key && $entries && is_array($entries)) {
+      foreach ($entries["old"] as $index => $entry) {
+        $query = "";
+        $found_different_field = false;
+        foreach ($entry as $key => $value) {
+          $new_value = ((array) $entries["new"][$index])[$key];
+          if ($new_value != $value) {
+            if ($found_different_field) {
+              $query .= ", ";
+            }
+            else {
+              $query .= "UPDATE `$name` SET ";
+            }
+            $query .= "`$key`" . " = " . "'$new_value'";
+            $found_different_field = true;
+          }
+        }
+        if ($found_different_field) {
+          $old_key = ((array) $entries["old"][$index])[$primary_key];
+          $query .= " WHERE `$primary_key` = '$old_key';";
+          $result = $this->query($query);
+          echo var_export($result);
+        }
+      }
     }
   }
 

@@ -112,6 +112,9 @@
   color: var(--tertiary);
   transition: .2s;
 }
+.table-view .floating-button .material-icons {
+  pointer-events: none;
+}
 
 /* Bottom buttons */
 .table-view tfoot .floating-button {

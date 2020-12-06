@@ -71,9 +71,9 @@ function table_view($name, $rows, $columns) {
 ?>
   <script>
     const currentTable = {
+      name: '<?php echo addslashes($name) ?>',
       columns: JSON.parse('<?php echo addslashes(json_encode($columns)) ?>'),
       rows: JSON.parse('<?php echo addslashes(json_encode($rows)) ?>'),
-      name: '<?php echo addslashes($name) ?>',
       hasUniqueKey: <?php echo var_export($has_unique_keys) ?>,
       primaryKey: '<?php echo $primary_key ?>',
       foreignColumns: JSON.parse('<?php echo addslashes(json_encode($foreign_columns)) ?>'),
@@ -131,7 +131,7 @@ function table_view($name, $rows, $columns) {
       <table class="table-view entry-view">
         <tbody>
         <?php if ($columns):
-          echo "<tr>";
+          echo "<tr class='columns'>";
           foreach ($columns as $column) {
             $name = $column["Field"];
         ?>
@@ -161,7 +161,7 @@ function table_view($name, $rows, $columns) {
           foreach ($rows as $row) {
             echo "<tr class='table-entry'>";
             foreach ($row as $column => $value) {
-              echo "<td><div><span>";
+              echo "<td><div><span class='value'>";
               if ($value != "") {
                 // If column has foreign key
                 if (array_search($column, $foreign_column_names) !== false) {

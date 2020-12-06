@@ -37,6 +37,7 @@ else if ($args[0] == "add_entries") {
 }
 else if ($args[0] == "delete_entries_unique") {
   if (!isset($_REQUEST["name"]) ||
+      !isset($_REQUEST["key"]) ||
       !isset($_REQUEST["entries"])) {
     echo "Bad request";
   }
@@ -45,6 +46,24 @@ else if ($args[0] == "delete_entries_unique") {
   $entries_json = $_REQUEST["entries"];
   $entries = json_decode($entries_json);
   DatabaseManager::get()->delete_entries_unique($table_name, $unique_key, $entries);
+}
+else if ($args[0] == "update_entries_unique") {
+  if (!isset($_REQUEST["name"]) ||
+      !isset($_REQUEST["key"]) ||
+      !isset($_REQUEST["entriesOld"]) ||
+      !isset($_REQUEST["entriesNew"])) {
+    echo "Bad request";
+  }
+  $table_name = $_REQUEST["name"];
+  $unique_key = $_REQUEST["key"];
+  $entries_old_json = $_REQUEST["entriesOld"];
+  $entries_old = json_decode($entries_old_json);
+  $entries_new_json = $_REQUEST["entriesNew"];
+  $entries_new = json_decode($entries_new_json);
+  $entries = [];
+  $entries["old"] = $entries_old;
+  $entries["new"] = $entries_new;
+  DatabaseManager::get()->update_entries_unique($table_name, $unique_key, $entries);
 }
 else if ($args[0] == "describe_table") {
   DatabaseManager::get()->describe_table();
