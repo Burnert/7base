@@ -7,6 +7,11 @@
 .default-container h3 {
   margin: 10px 0;
 }
+.default-container .search {
+  color: var(--tertiary);
+  margin: 10px;
+  border-radius: 5px;
+}
 
 /* Table wrapper */
 

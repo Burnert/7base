@@ -147,6 +147,7 @@ button:hover, a.button:hover {
 }
 button.nobg:hover, a.button.nobg:hover {
   background-color: inherit;
+  color: var(--primary) !important;
 }
 button .material-icons {
   display: block;
@@ -286,6 +287,15 @@ textarea.error {
 
 .sb {
   justify-content: space-between;
+}
+
+.f-center {
+  justify-content: center;
+  align-items: center;
+}
+
+.v-center {
+  align-items: center;
 }
 
 .vert {

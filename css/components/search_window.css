@@ -1,0 +1,48 @@
+.search-window {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  border: 1px solid var(--inverse);
+}
+.search-window > .top-bar {
+  background-color: var(--inverse-strong);
+  height: 30px;
+}
+.search-window > .top-bar h4 {
+  margin: 0 10px;
+  line-height: 30px;
+}
+.search-window > .top-bar button {
+  width: 30px;
+  height: 30px;
+}
+.search-window > .content {
+  padding: 10px;
+  background-color: var(--inverse);
+}
+.search-window > .content h4 {
+  margin: 0;
+}
+.search-window > .content > *:not(:last-child) {
+  margin-bottom: 15px;
+}
+.search-window > .content .confirm-search {
+  background-color: var(--inverse-strong);
+}
+.search-window > .content .confirm-search:hover {
+  background-color: var(--primary);
+}
+.search-window select,
+.search-window input {
+  box-sizing: border-box;
+  display: block;
+  font-size: 20px;
+  width: 200px;
+  height: 30px;
+}
+.search-window label {
+  display: flex;
+  align-items: center;
+  width: 150px;
+}

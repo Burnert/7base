@@ -91,10 +91,6 @@
 }
 .menu .table-manager li > .overlay > a > .material-icons {
   vertical-align: middle;
-  transition: .2s;
-}
-.menu .table-manager li > .overlay > a:hover > .material-icons {
-  color: var(--primary);
 }
 .menu .table-manager li:hover {
   background-color: var(--accent);

@@ -1,5 +1,7 @@
 <?php
 
+require_once("./php/components/search_window.php");
+
 function table_view($name, $rows, $columns) {
   // Get all unique keys
   $unique_keys = array_map(function($value) {
@@ -64,6 +66,7 @@ function table_view($name, $rows, $columns) {
     $foreign_values[$key["Column"]] = DatabaseManager::get()->select_from_table($key["RefTable"], null, $condition_str);
   }
 
+  search_window($columns);
 ?>
   <script>
     const currentTable = {
@@ -76,7 +79,12 @@ function table_view($name, $rows, $columns) {
     removeLastScriptTag();
   </script>
   <div class="default-container">
-    <h3><?php echo ucfirst($name) ?></h3>
+    <div class="horiz f-center">
+      <h3><?php echo ucfirst($name) ?></h3>
+      <button class="soft search">
+        <i class="material-icons">search</i>
+      </button>
+    </div>
     <?php if (!$has_unique_keys): ?>
     <div class="spacer-v"></div>
     <div class="warning block-center">
