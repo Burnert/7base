@@ -3,7 +3,7 @@
 include_once("./lang/lang.php");
 
 if (!isset($_SESSION["language"])) {
-  $_SESSION["language"] = "en";
+  $_SESSION["language"] = "zh";
 }
 $language = $_SESSION["language"];
 
