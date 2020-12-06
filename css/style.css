@@ -18,7 +18,7 @@
   --tertiary: #9c9590;
   --accent: #c8815a;
   --inverse: #3c3537;
-  --inverse-strong: #151616;
+  --inverse-strong: #171515;
   --selection: #d6bcaf;
 }
 
@@ -153,7 +153,6 @@ button .material-icons {
   align-items: center;
   width: fit-content;
   padding: 12px;
-  background-color: var(--inverse-strong);
   color: var(--inverse);
 }
 .warning > div {
