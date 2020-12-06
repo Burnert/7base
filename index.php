@@ -25,7 +25,7 @@ require_once("./php/components/table_create.php");
 require_once("./php/components/table_view.php");
 ?>
 <!DOCTYPE html>
-<html lang="<?php echo $language ?>" class="<?php echo $current_theme == "null" ? "" : $current_theme ?>">
+<html lang="<?php echo $language ?>" <?php echo $current_theme == "null" ? "" : "class='$current_theme'" ?>>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
