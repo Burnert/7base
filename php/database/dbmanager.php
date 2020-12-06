@@ -2,6 +2,7 @@
 
 class DatabaseManager {
   private $link;
+  private $database_name;
   private static $dbmanager;
 
   public function connect($host, $login, $password) {
@@ -12,6 +13,7 @@ class DatabaseManager {
   public function select_database($database) {
     if ($this->link) {
       @mysqli_select_db($this->link, $database);
+      $this->database_name = $database;
     }
   }
 
@@ -37,11 +39,29 @@ class DatabaseManager {
     }
   }
 
-  public function create_table($table) {
+  public function get_table_foreign_keys($name) {
+    if ($this->link) {
+      $query = "SELECT 
+      `CONSTRAINT_NAME` AS `Name`, 
+      `COLUMN_NAME` AS `Column`, 
+      `REFERENCED_TABLE_SCHEMA` AS `RefDatabase`, 
+      `REFERENCED_TABLE_NAME` AS `RefTable`, 
+      `REFERENCED_COLUMN_NAME` AS `RefColumn` 
+      FROM `INFORMATION_SCHEMA`.`KEY_COLUMN_USAGE` 
+      WHERE `TABLE_SCHEMA` = '$this->database_name' 
+      AND `TABLE_NAME` = '$name' 
+      AND `REFERENCED_TABLE_SCHEMA` IS NOT NULL;";
+      $result = $this->query($query);
+      $keys = @mysqli_fetch_all($result, MYSQLI_ASSOC);
+      return $keys;
+    }
+  }
+
+  public function create_table($name, $table) {
     if ($this->link) {
       foreach ($table as $column => $data) {
         var_dump($column);
-        foreach ($data as $name => $property) {
+        foreach ($data as $type => $property) {
           
         }
       }
@@ -64,7 +84,7 @@ class DatabaseManager {
       for ($i = 0; $i < count($values); $i++) {
         $value = mysqli_real_escape_string($this->link, $values[$i]);
 
-        $query .= $value;
+        $query .= "`$value`";
         if ($i < count($values) - 1) {
           $query .= ", ";
         }
