@@ -67,9 +67,9 @@ function table_view($name, $rows, $columns) {
 ?>
   <script>
     const currentTable = {
-      columns: JSON.parse('<?php echo json_encode($columns) ?>'),
-      rows: JSON.parse('<?php echo json_encode($rows) ?>'),
-      name: '<?php echo $name ?>',
+      columns: JSON.parse('<?php echo addslashes(json_encode($columns)) ?>'),
+      rows: JSON.parse('<?php echo addslashes(json_encode($rows)) ?>'),
+      name: '<?php echo addslashes($name) ?>',
       hasUniqueKey: <?php echo var_export($has_unique_keys) ?>,
       primaryKey: '<?php echo $primary_key ?>',
     };
