@@ -1,7 +1,14 @@
 <?php
 
 $lang["management_system"] = "数据库管理系统";
-
+// Login screen
+$lang["log_in"] = "登录";
+$lang["log_out"] = "登出";
+$lang["user_login"] = "用户名";
+$lang["user_password"] = "密码";
+// Select DB
+$lang["select_database"] = "选择数据库";
+// Generic
 $lang["columns"] = "表格栏";
 $lang["empty"] = "空的";
 $lang["confirm"] = "确认";
@@ -24,6 +31,10 @@ $lang["delete_are_you_sure"] = "你确定要删除这张表吗？";
 // Settings
 $lang["language"] = "语言";
 $lang["settings_apply"] = "使用";
+// Session settings
+$lang["session_settings"] = "配置会话";
+$lang["logout"] = "登出";
+$lang["change_db"] = "更换数据库";
 // Table view
 $lang["table_empty"] = "该表格中没有记录。";
 $lang["table_no_unique_keys"] = "该表格中没有唯一表列！";
@@ -31,6 +42,14 @@ $lang["add_entry"] = "加条目";
 $lang["delete_entry"] = "删除条目";
 $lang["key_primary"] = "首要的关键";
 $lang["key_unique"] = "唯一的关键";
+// Search in table
+$lang["search_in_table"] = "在数据库中搜索";
+$lang["search_in"] = "搜索在";
+$lang["search_column_name"] = "表列名";
+$lang["search_query"] = "搜索查询";
+$lang["search"] = "搜索";
+$lang["showing_only_queried"] = "仅显示查询条目！";
+$lang["search_back"] = "取消搜索";
 // Create table
 $lang["table_name"] = "表格的名称";
 $lang["name"] = "名称";

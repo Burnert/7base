@@ -1,7 +1,14 @@
 <?php
 
 $lang["management_system"] = "System Zarządzania Bazą Danych";
-
+// Login screen
+$lang["log_in"] = "Zaloguj";
+$lang["log_out"] = "Wyloguj";
+$lang["user_login"] = "Nazwa użytkownika";
+$lang["user_password"] = "Hasło";
+// Select DB
+$lang["select_database"] = "Wybierz Bazę";
+// Generic
 $lang["columns"] = "Kolumny";
 $lang["empty"] = "Puste";
 $lang["confirm"] = "Zatwierdź";
@@ -24,6 +31,10 @@ $lang["delete_are_you_sure"] = "Czy na pewno chcesz usunąć tą tabelę?";
 // Settings
 $lang["language"] = "Język";
 $lang["settings_apply"] = "Zastosuj";
+// Session settings
+$lang["session_settings"] = "Ustawienia sesji";
+$lang["logout"] = "Wyloguj";
+$lang["change_db"] = "Zmień bazę";
 // Table view
 $lang["table_empty"] = "Tabela nie zawiera rekordów.";
 $lang["table_no_unique_keys"] = "Tabela nie zawiera unikatowych kolumn!";
@@ -31,6 +42,14 @@ $lang["add_entry"] = "Dodaj pozycję";
 $lang["delete_entry"] = "Usuń pozycję";
 $lang["key_primary"] = "Klucz podstawowy";
 $lang["key_unique"] = "Klucz unikatowy";
+// Search in table
+$lang["search_in_table"] = "Wyszukaj w tabeli";
+$lang["search_in"] = "Szukaj w";
+$lang["search_column_name"] = "Nazwa kolumny";
+$lang["search_query"] = "Zapytanie";
+$lang["search"] = "Szukaj";
+$lang["showing_only_queried"] = "Wyświetlanie tylko wyszukiwanych rekordów!";
+$lang["search_back"] = "Anuluj zapytanie";
 // Create table
 $lang["table_name"] = "Nazwa tabeli";
 $lang["name"] = "Nazwa";
