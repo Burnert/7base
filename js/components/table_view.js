@@ -83,6 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
           showAdditionalButtons();
         }});
         tr.querySelector('td:first-of-type > div').appendChild(btDelete);
+        locDeleteColumnPromise.then(result => btDelete.title = result);
         const btEdit = createTableFloatingButton('<i class="material-icons">create</i>', { type: 'click', listener: (event) => {
           tr.classList.add('edit', 'update');
           event.target.remove();
