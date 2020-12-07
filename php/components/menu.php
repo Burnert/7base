@@ -91,6 +91,7 @@ function menu($menu_id) {
     <div class="session-settings">
       <div class="horiz">
         <button class="b-logout"><?php loc("logout") ?></button>
+        <button class="b-changedb"><?php loc("change_db") ?></button>
       </div>
     </div>
   </div>

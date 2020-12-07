@@ -10,6 +10,12 @@ class DatabaseManager {
     @mysqli_set_charset($this->link, "UTF-8");
   }
 
+  public function close() {
+    if ($this->link) {
+      @mysqli_close($this->link);
+    }
+  }
+
   public function select_database($database) {
     if ($this->link) {
       @mysqli_select_db($this->link, $database);
@@ -26,6 +32,25 @@ class DatabaseManager {
   private function query($query) {
     $result = mysqli_query($this->link, $query);
     return $result;
+  }
+
+  public function get_user($username, $password) {
+    if ($this->link) {
+      $query = "SELECT `Host`, `User`, `Password` FROM `mysql`.`user` WHERE `User` = '$username' AND `Password` = PASSWORD('$password')";
+      $result = $this->query($query);
+      return @mysqli_fetch_all($result, MYSQLI_ASSOC);
+    }
+  }
+
+  public function get_all_databases() {
+    if ($this->link) {
+      $query = "SHOW DATABASES;";
+      $result = $this->query($query);
+      $array = @mysqli_fetch_all($result, MYSQLI_NUM);
+      return array_map(function($value) {
+        return $value[0];
+      }, $array);
+    }
   }
 
   public function get_all_tables() {

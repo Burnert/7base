@@ -25,3 +25,18 @@ function sendInterfaceRequest(request, parameters) {
 function removeLastScriptTag() {
   Array.from(document.querySelectorAll('script')).reverse()[0].remove();
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+  const btLogOut = document.querySelector('.b-logout');
+  if (btLogOut) {
+    btLogOut.addEventListener('click', () => {
+      sendInterfaceRequest('destroy_session').then(result => location.href = 'index.php');
+    });
+  }
+  const btChangeDB = document.querySelector('.b-changedb');
+  if (btChangeDB) {
+    btChangeDB.addEventListener('click', () => {
+      sendInterfaceRequest('unset_selected_db').then(result => location.href = 'index.php');
+    });
+  }
+});

@@ -109,7 +109,7 @@ function table_view($name, $rows, $columns) {
       </div>
       <div>
         <?php 
-        loc("viewing_only_queried");
+        loc("showing_only_queried");
         echo "<br>";
         loc("search_column_name");
         echo " &ndash; \"<b>$search_column</b>\"";

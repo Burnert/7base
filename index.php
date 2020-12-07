@@ -15,9 +15,8 @@ require_once("./php/themes.php");
 require_once("./php/database/dbinfo.php");
 require_once("./php/database/dbmanager.php");
 
-DatabaseManager::create();
-DatabaseManager::get()->connect(db\HOST, db\LOGIN, db\PASSWORD);
-DatabaseManager::get()->select_database(db\DATABASE);
+require_once('./php/login.php');
+session_log_in();
 
 // Components
 require_once("./php/components/menu.php");
@@ -54,6 +53,8 @@ require_once("./php/components/table_view.php");
   <script src="./js/components/search_window.js"></script>
 </head>
 <body>
+  <?php if ($logged_in && $selected_database): ?>
+
   <header class="main">
     <h1>7Base</h1>
     <p><?php loc("management_system") ?></p>
@@ -107,5 +108,75 @@ require_once("./php/components/table_view.php");
   <script>
   document.querySelectorAll('.menu').forEach(menu => setTimeout(() => menu.style.display = 'block', 50));
   </script>
+
+  <?php elseif ($logged_in): ?>
+
+  <section class="splash">
+    <div class="databases-window">
+      <header>
+        <img src="./gfx/7base.png" alt="7Base" class="logo">
+      </header>
+      <div class="content">
+        <h4><?php loc("select_database") ?></h4>
+        <div>
+          <ul>
+          <?php
+          $databases = DatabaseManager::get()->get_all_databases();
+          foreach ($databases as $database) {
+          ?>
+            <li>
+              <button class="select_db" value="<?php echo $database ?>"><?php echo $database ?></button>
+            </li>
+          <?php
+          }
+          ?>
+          </ul>
+        </div>
+        <script>
+          document.querySelectorAll('button.select_db').forEach(button => button.addEventListener('click', (event) => {
+            sendInterfaceRequest('select_database', { database: event.target.value }).then(location.reload());
+          }));
+        </script>
+        <div class="horiz">
+          <button class="b-logout"><?php loc("log_out") ?></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <?php else: ?>
+
+  <section class="splash">
+    <div class="login-window">
+      <header>
+        <img src="./gfx/7base.png" alt="7Base" class="logo">
+      </header>
+      <div class="content">
+        <form action="index.php" method="POST" autocomplete="off" id="login-form">
+          <div class="horiz sb">
+            <label for="login"><span><?php loc("user_login") ?></span></label>
+            <input type="text" name="user_login" id="login" required>
+          </div>
+          <div class="horiz sb">
+            <label for="password"><span><?php loc("user_password") ?></span></label>
+            <input type="password" name="user_password" id="password">
+          </div>
+        </form>
+        <div class="horiz">
+          <button type="submit" form="login-form"><?php loc("log_in") ?></button>
+        </div>
+      </div>
+    </div>
+  </section>
+  <?php endif; ?>
 </body>
 </html>
+
+<?php
+
+$dbmanager = DatabaseManager::get();
+if ($dbmanager) {
+  $dbmanager->close();
+}
+
+?>

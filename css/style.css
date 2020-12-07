@@ -104,6 +104,93 @@ section.main {
   min-height: calc(100vh - 190px);
 }
 
+/* Splash screen */
+
+section.splash {
+  color: var(--secondary);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+}
+section.splash .login-window {
+  width: fit-content;
+  box-shadow: 2px 2px 4px #0005;
+  border: 1px solid var(--tertiary);
+  box-sizing: border-box;
+}
+section.splash .logo {
+  display: block;
+  height: 100px;
+  margin: auto;
+}
+section.splash header {
+  padding: 10px 20px;
+  background-color: var(--primary);
+  box-sizing: border-box;
+}
+section.splash .content {
+  background-color: var(--inverse);
+  padding: 10px;
+  box-sizing: border-box;
+}
+section.splash .content input {
+  width: 200px;
+}
+section.splash .content label {
+  margin: 0 10px;
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+}
+section.splash .content > *:not(:last-child) {
+  margin-bottom: 10px;
+}
+section.splash button {
+  background-color: var(--inverse-strong);
+}
+
+/* Database selection */
+
+section.splash .databases-window .content {
+  padding: 10px 0;
+}
+.databases-window h4 {
+  font-size: 20px; 
+}
+.databases-window ul {
+  list-style: none;
+  padding: 0;
+}
+.databases-window li {
+  width: 100%;
+  padding: 0;
+  text-align: center;
+
+  cursor: pointer;
+
+  transition: .2s;
+}
+.databases-window li > button {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 2px 40px;
+  text-decoration: none;
+  box-shadow: none;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  background-color: var(--inverse);
+  color: var(--secondary);
+  cursor: inherit;
+
+  transition: .2s;
+}
+
 /* Footer */
 
 footer {
@@ -142,11 +229,11 @@ button:focus {
   outline: none;
 }
 button:hover, a.button:hover {
-  background-color: var(--primary);
+  background-color: var(--primary) !important;
   color: var(--inverse) !important;
 }
 button.nobg:hover, a.button.nobg:hover {
-  background-color: inherit;
+  background-color: inherit !important;
   color: var(--primary) !important;
 }
 button .material-icons {

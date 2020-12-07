@@ -7,26 +7,45 @@ require_once('./php/localisation.php');
 require_once('./php/database/dbmanager.php');
 require_once("./php/database/dbinfo.php");
 
-DatabaseManager::create();
-DatabaseManager::get()->connect(db\HOST, db\LOGIN, db\PASSWORD);
-DatabaseManager::get()->select_database(db\DATABASE);
+require_once('./php/login.php');
 
 $request = $_REQUEST["request"];
 $args = explode(" ", $request);
 
+// Session
+if ($args[0] == "destroy_session") {
+  session_destroy();
+  echo "Session has been destroyed";
+}
+else if ($args[0] == "unset_selected_db") {
+  unset($_SESSION["database"]);
+  echo "Database has been unset";
+}
 // Settings
-if ($args[0] == "apply_settings") {
+else if ($args[0] == "apply_settings") {
   $_SESSION["language"] = $_REQUEST["lang"];
   echo "Changed language to <b>lang_" . $_SESSION["language"] . "</b>";
   $_SESSION["theme"] = $_REQUEST["theme"];
   echo "Changed theme to <b>theme_" . $_SESSION["theme"] . "</b>";
 }
 // Database
+else if ($args[0] == "select_database") {
+  session_log_in();
+  if (!isset($_REQUEST["database"])) {
+    echo "Bad request";
+    die;
+  }
+  $_SESSION["database"] = $_REQUEST["database"];
+  $selected_database = $_SESSION["database"];
+  DatabaseManager::get()->select_database($selected_database);
+}
 else if ($args[0] == "add_entries") {
+  session_log_in();
   if (!isset($_REQUEST["name"]) ||
       !isset($_REQUEST["columns"]) ||
       !isset($_REQUEST["entries"])) {
     echo "Bad request";
+    die;
   }
   $table_name = $_REQUEST["name"];
   $columns_json = $_REQUEST["columns"];
@@ -36,10 +55,12 @@ else if ($args[0] == "add_entries") {
   DatabaseManager::get()->add_entries($table_name, $columns, $entries);
 }
 else if ($args[0] == "delete_entries_unique") {
+  session_log_in();
   if (!isset($_REQUEST["name"]) ||
       !isset($_REQUEST["key"]) ||
       !isset($_REQUEST["entries"])) {
     echo "Bad request";
+    die;
   }
   $table_name = $_REQUEST["name"];
   $unique_key = $_REQUEST["key"];
@@ -48,11 +69,13 @@ else if ($args[0] == "delete_entries_unique") {
   DatabaseManager::get()->delete_entries_unique($table_name, $unique_key, $entries);
 }
 else if ($args[0] == "update_entries_unique") {
+  session_log_in();
   if (!isset($_REQUEST["name"]) ||
       !isset($_REQUEST["key"]) ||
       !isset($_REQUEST["entriesOld"]) ||
       !isset($_REQUEST["entriesNew"])) {
     echo "Bad request";
+    die;
   }
   $table_name = $_REQUEST["name"];
   $unique_key = $_REQUEST["key"];
@@ -66,6 +89,7 @@ else if ($args[0] == "update_entries_unique") {
   DatabaseManager::get()->update_entries_unique($table_name, $unique_key, $entries);
 }
 else if ($args[0] == "describe_table") {
+  session_log_in();
   DatabaseManager::get()->describe_table();
 }
 // Localisation
@@ -82,6 +106,10 @@ else if ($args[0] == "loc") {
       echo "NULL";
     }
   }
+}
+
+if ($logged_in) {
+  DatabaseManager::get()->close();
 }
 
 ?>

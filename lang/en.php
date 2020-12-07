@@ -1,6 +1,13 @@
 <?php
 
 $lang["management_system"] = "Database Management System";
+// Login screen
+$lang["log_in"] = "Log in";
+$lang["log_out"] = "Log out";
+$lang["user_login"] = "Username";
+$lang["user_password"] = "Password";
+// Select DB
+$lang["select_database"] = "Select Database";
 // Generic
 $lang["columns"] = "Columns";
 $lang["empty"] = "Empty";
@@ -27,6 +34,7 @@ $lang["settings_apply"] = "Apply";
 // Session settings
 $lang["session_settings"] = "Session settings";
 $lang["logout"] = "Logout";
+$lang["change_db"] = "Change database";
 // Table view
 $lang["table_empty"] = "The table has no records.";
 $lang["table_no_unique_keys"] = "The table has no unique columns!";
@@ -40,7 +48,7 @@ $lang["search_in"] = "Search in";
 $lang["search_column_name"] = "Column name";
 $lang["search_query"] = "Search query";
 $lang["search"] = "Search";
-$lang["viewing_only_queried"] = "Viewing only queried entries!";
+$lang["showing_only_queried"] = "Showing only queried entries!";
 $lang["search_back"] = "Cancel search";
 // Create table
 $lang["table_name"] = "Table name";
